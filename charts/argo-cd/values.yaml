@@ -1,0 +1,140 @@
+argo-cd:
+  dex:
+    enabled: false
+
+  configs:
+    repositories:
+      - type: git
+        name: home-cluster
+        url: https://github.com/bossoq/home-cluster.git
+      - type: helm
+        name: argo-cd
+        url: https://argoproj.github.io/argo-helm
+
+  server:
+    extraArgs:
+      - --insecure
+    config:
+      kustomize.buildOptions: "--enable-alpha-plugins"
+      # helm.valuesFileSchemes: >-
+      #   secrets+gpg-import, secrets+gpg-import-kubernetes,
+      #   secrets+age-import, secrets+age-import-kubernetes,
+      #   secrets,
+      #   https
+      additionalApplications:
+        - name: argo-cd
+          namespace: argocd
+          destination:
+            namespace: argocd
+            server: https://kubernetes.default.svc
+          project: argocd
+          source:
+            path: charts/argo-cd
+            repoURL: https://github.com/bossoq/home-cluster.git
+            targetRevision: HEAD
+          syncPolicy:
+            automated:
+              prune: true
+              selfHeal: true
+        - name: root
+          namespace: argocd
+          destination:
+            namespace: argocd
+            server: https://kubernetes.default.svc
+          project: default
+          source:
+            path: apps
+            repoURL: https://github.com/bossoq/home-cluster.git
+            targetRevision: HEAD
+          syncPolicy:
+            automated:
+              prune: true
+              selfHeal: true
+      additionalProjects:
+        - name: argocd
+          namespace: argocd
+          additionalLabels: {}
+          additionalAnnotations: {}
+          description: ArgoCD Project
+          sourceRepos:
+            - "*"
+          destinations:
+            - namespace: argocd
+              server: https://kubernetes.default.svc
+          clusterResourceWhitelist:
+            - group: "*"
+              kind: "*"
+          orphanedResources:
+            warn: false
+# repoServer:
+#   volumes:
+#     - name: helm-secrets-private-keys
+#       secret:
+#         secretName: helm-secrets-private-keys
+#     - name: custom-tools
+#       emptyDir: {}
+#   volumeMounts:
+#     - mountPath: /helm-secrets-private-keys/
+#       name: helm-secrets-private-keys
+#     - mountPath: /custom-tools
+#       name: custom-tools
+#     - mountPath: /usr/local/bin/kustomize
+#       name: custom-tools
+#       subPath: kustomize
+#     - mountPath: /.config/kustomize/plugin/viaduct.ai/v1/ksops/ksops
+#       name: custom-tools
+#       subPath: ksops
+#   env:
+#     - name: XDG_CONFIG_HOME
+#       value: /.config
+#     - name: SOPS_AGE_KEY_FILE
+#       value: /helm-secrets-private-keys/key.txt
+#     - name: HELM_PLUGINS
+#       value: /custom-tools/helm-plugins/
+#     - name: HELM_SECRETS_HELM_PATH
+#       value: /usr/local/bin/helm
+#     - name: HELM_SECRETS_SOPS_PATH
+#       value: /custom-tools/sops
+#     - name: HELM_SECRETS_KUBECTL_PATH
+#       value: /custom-tools/kubectl
+#     - name: HELM_SECRETS_VALUES_ALLOW_SYMLINKS
+#       value: "false"
+#     - name: HELM_SECRETS_VALUES_ALLOW_ABSOLUTE_PATH
+#       value: "false"
+#     - name: HELM_SECRETS_VALUES_ALLOW_PATH_TRAVERSAL
+#       value: "false"
+
+#   initContainers:
+#     - name: download-tools
+#       image: alpine:latest
+#       command: [sh, -ec]
+#       env:
+#         - name: HELM_SECRETS_VERSION
+#           value: "3.12.0"
+#         - name: SOPS_VERSION
+#           value: "3.7.2"
+#         - name: KUBECTL_VERSION
+#           value: "1.22.4"
+#       args:
+#         - |
+#           mkdir -p /custom-tools/helm-plugins
+#           wget -qO- https://github.com/jkroepke/helm-secrets/releases/download/v${HELM_SECRETS_VERSION}/helm-secrets.tar.gz | tar -C /custom-tools/helm-plugins -xzf-;
+
+#           wget -qO /custom-tools/sops https://github.com/mozilla/sops/releases/download/v${SOPS_VERSION}/sops-v${SOPS_VERSION}.linux
+#           wget -qO /custom-tools/kubectl https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl
+
+#           chmod +x /custom-tools/*
+#       volumeMounts:
+#         - mountPath: /custom-tools
+#           name: custom-tools
+#     - name: install-ksops
+#       image: viaductoss/ksops:v3.0.2
+#       command: ["/bin/sh", "-c"]
+#       args:
+#         - echo "Installing KSOPS...";
+#           mv ksops /custom-tools/;
+#           mv $GOPATH/bin/kustomize /custom-tools/;
+#           echo "Done.";
+#       volumeMounts:
+#         - mountPath: /custom-tools
+#           name: custom-tools

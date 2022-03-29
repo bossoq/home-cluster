@@ -78,15 +78,15 @@ repoServer:
       name: helm-secrets-private-keys
     - mountPath: /custom-tools
       name: custom-tools
-    # - mountPath: /usr/local/bin/kustomize
-    #   name: custom-tools
-    #   subPath: kustomize
-    # - mountPath: /.config/kustomize/plugin/viaduct.ai/v1/ksops/ksops
-    #   name: custom-tools
-    #   subPath: ksops
+    - mountPath: /usr/local/bin/kustomize
+      name: custom-tools
+      subPath: kustomize
+    - mountPath: /.config/kustomize/plugin/viaduct.ai/v1/ksops/ksops
+      name: custom-tools
+      subPath: ksops
   env:
-    # - name: XDG_CONFIG_HOME
-    #   value: /.config
+    - name: XDG_CONFIG_HOME
+      value: /.config
     - name: SOPS_AGE_KEY_FILE
       value: /helm-secrets-private-keys/key.txt
     - name: HELM_PLUGINS
@@ -127,14 +127,14 @@ repoServer:
       volumeMounts:
         - mountPath: /custom-tools
           name: custom-tools
-    # - name: install-ksops
-    #   image: viaductoss/ksops:v3.0.2
-    #   command: ["/bin/sh", "-c"]
-    #   args:
-    #     - echo "Installing KSOPS...";
-    #       mv ksops /custom-tools/;
-    #       mv $GOPATH/bin/kustomize /custom-tools/;
-    #       echo "Done.";
-    #   volumeMounts:
-    #     - mountPath: /custom-tools
-    #       name: custom-tools
+    - name: install-ksops
+      image: viaductoss/ksops:v3.0.2
+      command: ["/bin/sh", "-c"]
+      args:
+        - echo "Installing KSOPS...";
+          mv ksops /custom-tools/;
+          mv $GOPATH/bin/kustomize /custom-tools/;
+          echo "Done.";
+      volumeMounts:
+        - mountPath: /custom-tools
+          name: custom-tools

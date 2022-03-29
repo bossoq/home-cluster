@@ -21,51 +21,51 @@ argo-cd:
       #   secrets+age-import, secrets+age-import-kubernetes,
       #   secrets,
       #   https
-      additionalApplications:
-        - name: argo-cd
+    additionalApplications:
+      - name: argo-cd
+        namespace: argocd
+        destination:
           namespace: argocd
-          destination:
-            namespace: argocd
+          server: https://kubernetes.default.svc
+        project: argocd
+        source:
+          path: charts/argo-cd
+          repoURL: https://github.com/bossoq/home-cluster.git
+          targetRevision: HEAD
+        syncPolicy:
+          automated:
+            prune: true
+            selfHeal: true
+      - name: root
+        namespace: argocd
+        destination:
+          namespace: argocd
+          server: https://kubernetes.default.svc
+        project: default
+        source:
+          path: apps
+          repoURL: https://github.com/bossoq/home-cluster.git
+          targetRevision: HEAD
+        syncPolicy:
+          automated:
+            prune: true
+            selfHeal: true
+    additionalProjects:
+      - name: argocd
+        namespace: argocd
+        additionalLabels: {}
+        additionalAnnotations: {}
+        description: ArgoCD Project
+        sourceRepos:
+          - "*"
+        destinations:
+          - namespace: argocd
             server: https://kubernetes.default.svc
-          project: argocd
-          source:
-            path: charts/argo-cd
-            repoURL: https://github.com/bossoq/home-cluster.git
-            targetRevision: HEAD
-          syncPolicy:
-            automated:
-              prune: true
-              selfHeal: true
-        - name: root
-          namespace: argocd
-          destination:
-            namespace: argocd
-            server: https://kubernetes.default.svc
-          project: default
-          source:
-            path: apps
-            repoURL: https://github.com/bossoq/home-cluster.git
-            targetRevision: HEAD
-          syncPolicy:
-            automated:
-              prune: true
-              selfHeal: true
-      additionalProjects:
-        - name: argocd
-          namespace: argocd
-          additionalLabels: {}
-          additionalAnnotations: {}
-          description: ArgoCD Project
-          sourceRepos:
-            - "*"
-          destinations:
-            - namespace: argocd
-              server: https://kubernetes.default.svc
-          clusterResourceWhitelist:
-            - group: "*"
-              kind: "*"
-          orphanedResources:
-            warn: false
+        clusterResourceWhitelist:
+          - group: "*"
+            kind: "*"
+        orphanedResources:
+          warn: false
 # repoServer:
 #   volumes:
 #     - name: helm-secrets-private-keys
@@ -114,7 +114,7 @@ argo-cd:
 #         - name: SOPS_VERSION
 #           value: "3.7.2"
 #         - name: KUBECTL_VERSION
-#           value: "1.22.4"
+#           value: "1.23.5"
 #       args:
 #         - |
 #           mkdir -p /custom-tools/helm-plugins

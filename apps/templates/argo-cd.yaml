@@ -1,18 +1,19 @@
-apiVersion: argoproj.io/v1alpha1
+apiVersion: agroproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root
+  name: argo-cd
+  namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
+    namespace: argocd
     server: https://kubernetes.default.svc
-    namespace: default
-  project: default
+  project: argocd
   source:
-    path: apps
+    path: charts/argo-cd
     repoURL: "{{ .Values.repo.url }}"
-    targetRevision: "{{ .Values.repo.revision }}"
+  targetRevision: "{{ .Values.repo.revision }}"
   syncPolicy:
     automated:
       prune: true

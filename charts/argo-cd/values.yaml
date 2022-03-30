@@ -23,9 +23,9 @@ argo-cd:
         https
     additionalApplications:
       - name: argo-cd
-        namespace: argo
+        namespace: argocd
         destination:
-          namespace: argo
+          namespace: argocd
           server: https://kubernetes.default.svc
         project: argocd
         source:
@@ -37,9 +37,9 @@ argo-cd:
             prune: true
             selfHeal: true
       - name: root
-        namespace: argo
+        namespace: argocd
         destination:
-          namespace: argo
+          namespace: argocd
           server: https://kubernetes.default.svc
         project: default
         source:
@@ -52,14 +52,14 @@ argo-cd:
             selfHeal: true
     additionalProjects:
       - name: argocd
-        namespace: argo
+        namespace: argocd
         additionalLabels: {}
         additionalAnnotations: {}
         description: ArgoCD Project
         sourceRepos:
           - "*"
         destinations:
-          - namespace: argo
+          - namespace: argocd
             server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: "*"

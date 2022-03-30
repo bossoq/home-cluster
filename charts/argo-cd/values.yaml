@@ -67,15 +67,21 @@ argo-cd:
         orphanedResources:
           warn: false
 repoServer:
+  serviceAccount:
+    create: true
+    name: argocd-repo-server
+  rbac:
+    - apiGroups:
+        - ""
+      resources:
+        - secrets
+      verbs:
+        - get
+
   volumes:
-    - name: helm-secrets-private-keys
-      secret:
-        secretName: helm-secrets-private-keys
     - name: custom-tools
       emptyDir: {}
   volumeMounts:
-    - mountPath: /helm-secrets-private-keys/
-      name: helm-secrets-private-keys
     - mountPath: /custom-tools
       name: custom-tools
     - mountPath: /usr/local/bin/kustomize
@@ -87,8 +93,6 @@ repoServer:
   env:
     - name: XDG_CONFIG_HOME
       value: /.config
-    - name: SOPS_AGE_KEY_FILE
-      value: /helm-secrets-private-keys/key.txt
     - name: HELM_PLUGINS
       value: /custom-tools/helm-plugins/
     - name: HELM_SECRETS_HELM_PATH

@@ -50,22 +50,22 @@ argo-cd:
       #     automated:
       #       prune: true
       #       selfHeal: true
-    additionalProjects:
-      - name: argocd
-        namespace: argocd
-        additionalLabels: {}
-        additionalAnnotations: {}
-        description: ArgoCD Project
-        sourceRepos:
-          - "*"
-        destinations:
-          - namespace: argocd
-            server: https://kubernetes.default.svc
-        clusterResourceWhitelist:
-          - group: "*"
-            kind: "*"
-        orphanedResources:
-          warn: false
+    # additionalProjects:
+    #   - name: argocd
+    #     namespace: argocd
+    #     additionalLabels: {}
+    #     additionalAnnotations: {}
+    #     description: ArgoCD Project
+    #     sourceRepos:
+    #       - "*"
+    #     destinations:
+    #       - namespace: argocd
+    #         server: https://kubernetes.default.svc
+    #     clusterResourceWhitelist:
+    #       - group: "*"
+    #         kind: "*"
+    #     orphanedResources:
+    #       warn: false
 repoServer:
   volumes:
     - name: helm-secrets-private-keys

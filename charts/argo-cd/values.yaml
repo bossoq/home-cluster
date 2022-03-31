@@ -36,16 +36,19 @@ argo-cd:
           automated:
             prune: true
             selfHeal: true
-      - name: root
+      - name: argocd-apps
         namespace: argocd
         destination:
           namespace: argocd
           server: https://kubernetes.default.svc
-        project: default
+        project: argocd
         source:
           path: apps
           repoURL: https://github.com/bossoq/home-cluster.git
           targetRevision: HEAD
+          diirectory:
+            recurse: true
+            jsonnet: {}
         syncPolicy:
           automated:
             prune: true

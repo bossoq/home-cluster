@@ -46,7 +46,7 @@ argo-cd:
           path: apps
           repoURL: https://github.com/bossoq/home-cluster.git
           targetRevision: HEAD
-          diirectory:
+          directory:
             recurse: true
             jsonnet: {}
         syncPolicy:

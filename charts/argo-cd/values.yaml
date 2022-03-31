@@ -41,7 +41,7 @@ argo-cd:
         destination:
           namespace: argocd
           server: https://kubernetes.default.svc
-        project: argocd
+        project: default
         source:
           path: apps
           repoURL: https://github.com/bossoq/home-cluster.git

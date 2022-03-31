@@ -1,4 +1,0 @@
-echo-server:
-  image:
-    # Override image tag
-    tag: "0.5.1"

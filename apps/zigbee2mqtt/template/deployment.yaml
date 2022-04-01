@@ -52,7 +52,7 @@ spec:
               subPath: configuration.yaml
             - name: zigbee2mqtt-udev
               mountPath: /run/udev
-            - name: USB
+            - name: usb
               mountPath: /dev/ttyUSB0
           livenessProbe:
             tcpSocket:
@@ -82,7 +82,7 @@ spec:
         - name: zigbee2mqtt-udev
           hostPath:
             path: /run/udev
-        - name: USB
+        - name: usb
           hostPath:
             path: /dev/ttyUSB0
         - name: zigbee2mqtt-config

@@ -9,7 +9,7 @@ spec:
   destination:
     namespace: zigbee2mqtt
     server: "{{ .Values.spec.destination.server }}"
-  project: default
+  project: smarthome-project
   source:
     path: apps/zigbee2mqtt
     repoURL: "{{ .Values.repo.url }}"

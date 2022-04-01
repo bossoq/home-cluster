@@ -8,12 +8,12 @@ metadata:
 spec:
   destination:
     namespace: zigbee2mqtt
-    server: "{{ .Values.spec.destination.server }}"
+    server: https://kubernetes.default.svc
   project: smarthome-project
   source:
     path: apps/zigbee2mqtt
-    repoURL: "{{ .Values.repo.url }}"
-    targetRevision: "{{ .Values.repo.revision }}"
+    repoURL: https://github.com/bossoq/home-cluster.git
+    targetRevision: main
   syncPolicy:
     automated:
       prune: true

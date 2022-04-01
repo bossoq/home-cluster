@@ -14,9 +14,6 @@ spec:
     path: apps/zigbee2mqtt
     repoURL: "{{ .Values.repo.url }}"
     targetRevision: "{{ .Values.repo.revision }}"
-    helm:
-      valueFiles: {}
-        # - secrets+age-import:///helm-secrets-private-keys/key.txt?secret-values.enc.yaml
   syncPolicy:
     automated:
       prune: true

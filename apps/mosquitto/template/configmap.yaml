@@ -5,7 +5,7 @@ metadata:
   labels:
 {{ include "mosquitto.labels" . | indent 4 }}
 data:
-  mosquitto.conf: |
+  mosquitto.conf: |-
     # Config file for mosquitto
     #
     # See mosquitto.conf(5) for more information.

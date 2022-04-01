@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: zigbee2mqtt
-  namespace: argocd
+  namespace: smarthome-project
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:

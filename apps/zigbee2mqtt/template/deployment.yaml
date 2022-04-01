@@ -29,6 +29,15 @@ spec:
               value: "/data"
             - name: ZIGBEE2MQTT_CONFIG_MQTT_SERVER # optional - can also be configured in the configuration.yaml in the configmap
               value: "mqtt://mosquitto"
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                  - matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - zigbee-controller
           securityContext:
             privileged: true
           ports:

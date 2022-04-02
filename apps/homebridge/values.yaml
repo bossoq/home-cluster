@@ -1,14 +1,59 @@
-spec:
-  destination:
-    server: https://kubernetes.default.svc
-repo:
-  url: https://github.com/bossoq/home-cluster.git
-  revision: main
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: ghcr.io/oznu/homebridge
+  # -- image tag
+  tag: latest@sha256:4703dca68510307587361f4312e6bad0e765e85f8986a7517e0f393d8d0e2410
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See [image docs](https://github.com/oznu/docker-homebridge#parameters) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: Asia/Bangkok
+  # -- Specify the user ID the application will run as
+  PUID: "1000"
+  # -- Specify the group ID the application will run as
+  PGID: "1000"
+  # -- Enable the Homebridge UI
+  HOMEBRIDGE_CONFIG_UI: 1
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 8581
+
+# -- Enable hostNetwork - needed for discovery to work
+hostNetwork: true
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: true
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: true
     mountPath: /homebridge
-ingress:
-  main:
-    enabled: true
-hostNetwork: true
+
+# -- Custom startup.sh script to install additional packages in the container
+# @default -- string
+config: |
+  #!/bin/sh
+
+  npm install homebridge-info homebridge-config-ui-x homebridge-camera-ui homebridge-http-notification-server homebridge-http-humidity-sensor homebridge-http-temperature-sensor homebridge-tuya-ir homebridge-z2m
+
+  apk add --no-cache ffmpeg ffmpeg-libs libpcap-dev

@@ -17,7 +17,3 @@ spec:
     targetPort: 9001
     protocol: TCP
     name: websocket
-service:
-  type: NodePort
-  port: 1883
-  port: 9001

@@ -28,8 +28,6 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
-            - name: homebridge
-              containerPort: 51826
           volumeMounts:
               - name: hoobs-data
                 mountPath: /hoobs

@@ -15,7 +15,3 @@ spec:
     targetPort: 80
     protocol: TCP
     name: default
-  - port: 51826
-    nodePort: 30004
-    targetPort: 51826
-    name: bridge

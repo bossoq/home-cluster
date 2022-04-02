@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: hoobs
+  name: hoobs
+spec:
+  selector:
+    matchLabels:
+      app: hoobs
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hoobs
+    spec:
+      containers:
+        - name: hoobs
+          image: hoobs/hoobs:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TZ
+              value: Asia/Bangkok
+            - name: HOMEBRIDGE_CONFIG_UI
+              value: 1
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+              - name: hoobs-data
+                mountPath: /hoobs
+              - name: hoobs-config
+                mountPath: /hoobs/startup.sh
+                subPath: startup.sh
+      volumes:
+        - name: hoobs-data
+          persistentVolumeClaim:
+            claimName: hoobs-data
+        - name: hoobs-config
+          configMap:
+            name: hoobs-config

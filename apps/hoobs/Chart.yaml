@@ -1,0 +1,4 @@
+apiVersion: v2
+appVersion: 4.0.0
+description: A lightweight NodeJS server that emulates the iOS HomeKit API
+name: hoobs

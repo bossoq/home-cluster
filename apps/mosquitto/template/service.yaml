@@ -11,3 +11,13 @@ spec:
   ports:
   - port: 1883
     targetPort: 1883
+    protocol: TCP
+    name: default
+  - port: 9001
+    targetPort: 9001
+    protocol: TCP
+    name: websocket
+  service:
+    type: NodePort
+    port: 1883
+    port: 9001

@@ -10,10 +10,12 @@ spec:
     app: mosquitto
   ports:
   - port: 1883
+    nodePort: 1883
     targetPort: 1883
     protocol: TCP
     name: default
   - port: 9001
+    nodePort: 9001
     targetPort: 9001
     protocol: TCP
     name: websocket

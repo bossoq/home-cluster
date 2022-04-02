@@ -6,17 +6,11 @@ metadata:
     app: homebridge
   name: homebridge
 spec:
-  type: NodePort
   ports:
     - name: homebridge
       port: 8581
       targetPort: http
-      nodePort: 30008
       protocol: TCP
-    - name: homebridge-bridge
-      port: 30009
-      targetPort: 30009
-      nodePort: 30009
   selector:
     app: homebridge
 status:

@@ -28,6 +28,9 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
+            - name: bridge
+              containerPort: 30004
+              protocol: TCP
           volumeMounts:
               - name: hoobs-data
                 mountPath: /hoobs

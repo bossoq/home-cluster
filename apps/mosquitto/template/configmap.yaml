@@ -4,12 +4,15 @@ metadata:
   name: mosquitto-config
 data:
   mosquitto.conf: |-
+    listener 1883
+    listener 9001
+    protocol websockets
     # Ip/hostname to listen to.
     # If not given, will listen on all interfaces
-    #bind_address
+    # bind_address
 
     # Port to use for the default listener.
-    port 1883
+    # port 1883
 
     # Allow anonymous users to connect?
     # If not, the password file should be created

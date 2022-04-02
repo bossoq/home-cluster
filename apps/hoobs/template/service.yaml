@@ -18,3 +18,4 @@ spec:
   - port: 51826
     nodePort: 30004
     targetPort: 51826
+    name: bridge

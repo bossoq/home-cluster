@@ -41,6 +41,7 @@ spec:
             - name: homebridge-config
               mountPath: /homebridge/startup.sh
               subPath: startup.sh
+      hostNetwork: true
       volumes:
         - name: homebridge-data
           persistentVolumeClaim:

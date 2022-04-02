@@ -4,4 +4,3 @@ spec:
 repo:
   url: https://github.com/bossoq/home-cluster.git
   revision: main
-hostNetwork: true

@@ -29,4 +29,5 @@ spec:
               - name: tuya
                 containerPort: 6668
                 protocol: TCP
-
+      imagePullSecrets:
+        - name: dockerconfig-github

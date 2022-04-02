@@ -31,3 +31,4 @@ spec:
                 protocol: TCP
       imagePullSecrets:
         - name: dockerconfig-github
+      hostNetwork: true

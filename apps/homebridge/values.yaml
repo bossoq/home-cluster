@@ -8,3 +8,7 @@ persistence:
   config:
     enabled: true
     mountPath: /homebridge
+ingress:
+  main:
+    enabled: true
+hostNetwork: true

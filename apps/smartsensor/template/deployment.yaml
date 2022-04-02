@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
           - name: smartsensor
-            image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+            image: ghcr.io/bossoq/smartsensor:latest
             imagePullPolicy: Always
             ports:
               - name: http

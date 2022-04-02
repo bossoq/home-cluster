@@ -1,0 +1,3 @@
+image:
+  repository: ghcr.io/bossoq/smartsensor
+  tag: latest

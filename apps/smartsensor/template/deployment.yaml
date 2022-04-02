@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: smartsensor
+  name: smartsensor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smartsensor
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: smartsensor
+    spec:
+      containers:
+          - name: smartsensor
+            image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+            imagePullPolicy: Always
+            ports:
+              - name: http
+                containerPort: 3000
+                protocol: TCP
+              - name: tuya
+                containerPort: 6668
+                protocol: TCP
+

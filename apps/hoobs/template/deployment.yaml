@@ -23,7 +23,7 @@ spec:
             - name: TZ
               value: Asia/Bangkok
             - name: HOMEBRIDGE_CONFIG_UI
-              value: 1
+              value: "1"
           ports:
             - name: http
               containerPort: 8080

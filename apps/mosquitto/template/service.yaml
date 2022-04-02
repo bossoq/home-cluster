@@ -10,13 +10,13 @@ spec:
   selector:
     app: mosquitto
   ports:
-  - port: 30000
-    nodePort: 1883
+  - port: 1883
+    nodePort: 30000
     targetPort: 1883
     protocol: TCP
     name: default
-  - port: 30001
-    nodePort: 9001
+  - port: 9001
+    nodePort: 30001
     targetPort: 9001
     protocol: TCP
     name: websocket

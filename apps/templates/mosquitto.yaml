@@ -2,12 +2,12 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: mosquitto
-  namespace: smarthome-project
+  namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: mosquitto
+    namespace: smarthome-project
     server: https://kubernetes.default.svc
   project: smarthome-project
   source:

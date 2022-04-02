@@ -5,15 +5,6 @@ metadata:
   labels:
     type: local
 spec:
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-          - matchExpressions:
-            - key: app
-              operator: In
-              values:
-                - zigbee-controller
   storageClassName: manual
   capacity:
     storage: 100Mi

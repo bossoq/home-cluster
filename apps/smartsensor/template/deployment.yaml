@@ -19,15 +19,18 @@ spec:
         app: smartsensor
     spec:
       containers:
-          - name: smartsensor
-            image: ghcr.io/bossoq/smartsensor:latest
-            imagePullPolicy: Always
-            ports:
-              - name: http
-                containerPort: 3000
-                protocol: TCP
-              - name: tuya
-                containerPort: 6668
-                protocol: TCP
+        - env:
+          - name: ENDPOINT
+            value: "http://homebridge.argocd:8080"
+        - name: smartsensor
+          image: ghcr.io/bossoq/smartsensor:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+            - name: tuya
+              containerPort: 6668
+              protocol: TCP
       imagePullSecrets:
         - name: dockerconfig-github

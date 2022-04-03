@@ -19,12 +19,12 @@ spec:
         app: smartsensor
     spec:
       containers:
-        - env:
-          - name: ENDPOINT
-            value: "http://homebridge.argocd:8080"
         - name: smartsensor
           image: ghcr.io/bossoq/smartsensor:latest
           imagePullPolicy: Always
+          env:
+            - name: ENDPOINT
+              value: "http://homebridge.argocd:8080"
           ports:
             - name: http
               containerPort: 3000

@@ -29,7 +29,7 @@ spec:
                     - zigbee-controller
       containers:
         - name: autogacha
-          image: ghcr.io/bossoq/autogacha:1.1
+          image: ghcr.io/bossoq/autogacha:1.2
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: autogacha-data

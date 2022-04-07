@@ -14,9 +14,6 @@ spec:
     path: apps/autogacha
     repoURL: https://github.com/bossoq/home-cluster.git
     targetRevision: main
-    helm:
-      # valueFiles:
-      #   - secrets+age-import:///argocd/helm-secrets-private-keys#key.txt?secret-values.enc.yaml
   syncPolicy:
     automated:
       prune: true

@@ -31,22 +31,6 @@ spec:
         - name: autogacha
           image: ghcr.io/bossoq/autogacha:latest
           imagePullPolicy: IfNotPresent
-          env:
-            - name: CLIENT_ID
-              valueFrom:
-                secretKeyRef:
-                  key: CLIENT_ID
-                  name: autogacha
-            - name: CLIENT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  key: CLIENT_SECRET
-                  name: autogacha
-            - name: CHANNEL
-              valueFrom:
-                secretKeyRef:
-                  key: CHANNEL
-                  name: autogacha
           volumeMounts:
             - name: autogacha-data
               mountPath: /app

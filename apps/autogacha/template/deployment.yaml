@@ -24,7 +24,7 @@ spec:
           imagePullPolicy: Always
           volumeMounts:
             - name: autogacha-data
-              mountPath: /app
+              mountPath: /app/data
       volumes:
         - name: autogacha-data
           persistentVolumeClaim:

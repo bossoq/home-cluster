@@ -18,19 +18,10 @@ spec:
       labels:
         app: autogacha
     spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                - key: app
-                  operator: In
-                  values:
-                    - zigbee-controller
       containers:
         - name: autogacha
           image: ghcr.io/bossoq/autogacha:1.2
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           volumeMounts:
             - name: autogacha-data
               mountPath: /app

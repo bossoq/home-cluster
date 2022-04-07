@@ -1,0 +1,17 @@
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   creationTimestamp: null
+#   labels:
+#     app: autogacha
+#   name: autogacha
+# spec:
+#   ports:
+#     - name: autogacha
+#       port: 8080
+#       targetPort: http
+#       protocol: TCP
+#   selector:
+#     app: autogacha
+# status:
+#   loadBalancer: {}

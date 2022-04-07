@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: autogacha
+  name: autogacha
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: autogacha
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: autogacha
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                    - zigbee-controller
+      containers:
+        - name: autogacha
+          image: ghcr.io/bossoq/autogacha:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  key: CLIENT_ID
+                  name: autogacha
+            - name: CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: CLIENT_SECRET
+                  name: autogacha
+            - name: CHANNEL
+              valueFrom:
+                secretKeyRef:
+                  key: CHANNEL
+                  name: autogacha
+          volumeMounts:
+            - name: autogacha-data
+              mountPath: /app
+      volumes:
+        - name: autogacha-data
+          persistentVolumeClaim:
+            claimName: autogacha-data

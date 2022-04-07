@@ -92,21 +92,15 @@ argo-cd:
       pullPolicy: IfNotPresent
       tag: "v0.4.0"
 repoServer:
-  serviceAccount:
-    create: true
-    name: argocd-repo-server
-  rbac:
-    - apiGroups:
-        - ""
-      resources:
-        - secrets
-      verbs:
-        - get
-
   volumes:
+    - name: helm-secrets-private-keys
+      secret:
+        secretName: helm-secrets-private-keys
     - name: custom-tools
       emptyDir: {}
   volumeMounts:
+    - mountPath: /helm-secrets-private-keys/
+      name: helm-secrets-private-keys
     - mountPath: /custom-tools
       name: custom-tools
     - mountPath: /usr/local/bin/kustomize

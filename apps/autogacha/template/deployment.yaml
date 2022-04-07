@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: autogacha
-          image: ghcr.io/bossoq/autogacha:1.2
+          image: ghcr.io/bossoq/autogacha:1.3
           imagePullPolicy: Always
           volumeMounts:
             - name: autogacha-data

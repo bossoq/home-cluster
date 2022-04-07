@@ -16,7 +16,7 @@ spec:
     targetRevision: main
     helm:
       valueFiles:
-        - secrets+gpg-import-kubernetes://argocd/helm-secrets-private-keys#key.txt?secret-values.enc.yaml
+        - secrets+gpg-import:///helm-secrets-private-keys/key.txt?secret-values.enc.yaml
   syncPolicy:
     automated:
       prune: true

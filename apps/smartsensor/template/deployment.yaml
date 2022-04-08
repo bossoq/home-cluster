@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: smartsensor
-          image: ghcr.io/bossoq/smartsensor:latest
+          image: ghcr.io/bossoq/smartsensor:1.5
           imagePullPolicy: Always
           env:
             - name: ENDPOINT

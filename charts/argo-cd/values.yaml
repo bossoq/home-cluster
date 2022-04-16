@@ -87,8 +87,6 @@ argo-cd:
           automated:
             prune: true
             selfHeal: true
-          syncOptions:
-            - CreateNamespace=true
     additionalProjects:
       - name: argocd
         namespace: argocd

@@ -126,7 +126,7 @@ argo-cd:
       enabled: true
       annotations: {}
       labels: {}
-      ingressClassName: ""
+      ingressClassName: "nginx"
       hosts:
         - argocd.picturo.us
       paths:

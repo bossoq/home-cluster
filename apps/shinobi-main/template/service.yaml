@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  creationTimestamp: null
+  labels:
+    app: shinobi-main
+  name: shinobi-main
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app: shinobi-main
+status:
+  loadBalancer: {}

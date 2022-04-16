@@ -131,6 +131,8 @@ argo-cd:
         - argocd.picturo.us
       paths:
         - /
+      port:
+        number: 8080
       pathType: Prefix
       extraPaths: []
       tls: []

@@ -10,6 +10,9 @@ argo-cd:
       - type: helm
         name: argo-cd
         url: https://argoproj.github.io/argo-helm
+      - type: helm
+        name: bitnami
+        url: https://charts.bitnami.com/bitnami
 
   server:
     extraArgs:
@@ -70,6 +73,22 @@ argo-cd:
           automated:
             prune: true
             selfHeal: true
+      - name: infra
+        namespace: argocd
+        destination:
+          namespace: infra
+          server: https://kubernetes.default.svc
+        project: infra
+        source:
+          path: infra
+          repoURL: https://github.com/bossoq/home-cluster.git
+          targetRevision: HEAD
+        syncPolicy:
+          automated:
+            prune: true
+            selfHeal: true
+          syncOptions:
+            - CreateNamespace=true
     additionalProjects:
       - name: argocd
         namespace: argocd
@@ -86,6 +105,36 @@ argo-cd:
             kind: "*"
         orphanedResources:
           warn: false
+      - namme: infra
+        namespace: argocd
+        additionalLabels: {}
+        additionalAnnotations: {}
+        description: Infra Project
+        sourceRepos:
+          - "*"
+        destinations:
+          - namespace: argocd
+            server: https://kubernetes.default.svc
+          - namespace: infra
+            server: https://kubernetes.default.svc
+        clusterResourceWhitelist:
+          - group: "*"
+            kind: "*"
+        orphanedResources:
+          warn: false
+    ingress:
+      enabled: true
+      annotations: {}
+      labels: {}
+      ingressClassName: ""
+      hosts:
+        - argocd.picturo.us
+      paths:
+        - /
+      pathType: Prefix
+      extraPaths: []
+      tls: []
+      https: false
   applicationSet:
     image:
       repository: quay.io/argoproj/argocd-applicationset

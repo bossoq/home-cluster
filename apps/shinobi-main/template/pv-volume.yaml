@@ -12,7 +12,7 @@ spec:
     - ReadWriteMany
   mountOptions:
     - hard
-    - nfsvers=4.1
+    - nfsvers=3
   nfs:
     path: /mnt/disks/IPCAM
     server: 10.0.1.201

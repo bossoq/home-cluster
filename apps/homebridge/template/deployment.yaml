@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: homebridge
-          image: ghcr.io/oznu/homebridge:latest
+          image: ghcr.io/oznu/homebridge:ubuntu
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
@@ -39,7 +39,7 @@ spec:
               protocol: TCP
           volumeMounts:
             - name: homebridge-data
-              mountPath: /data
+              mountPath: /homebridge
             - name: homebridge-config
               mountPath: /homebridge/startup.sh
               subPath: startup.sh

@@ -9,5 +9,3 @@ data:
     #!/bin/sh
 
     npm install homebridge-info homebridge-config-ui-x homebridge-camera-ui homebridge-http-notification-server homebridge-http-humidity-sensor homebridge-http-temperature-sensor homebridge-tuya-ir homebridge-z2m
-
-    apk add --no-cache ffmpeg ffmpeg-libs libpcap-dev

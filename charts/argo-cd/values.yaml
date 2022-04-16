@@ -103,7 +103,7 @@ argo-cd:
             kind: "*"
         orphanedResources:
           warn: false
-      - namme: infra
+      - name: infra
         namespace: argocd
         additionalLabels: {}
         additionalAnnotations: {}

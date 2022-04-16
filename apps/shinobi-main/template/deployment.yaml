@@ -30,7 +30,6 @@ spec:
           volumeMounts:
             - mountPath: /opt/shinobi/videos
               name: shinobi-main-video
-              subPath: videos
             - mountPath: /config
               name: shinobi-main-data
               subPath: config

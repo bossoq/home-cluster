@@ -5,7 +5,10 @@ metadata:
   labels:
     app: shinobi-main
   name: shinobi-main
+  annotations:
+    metallb.universe.tf/address-pool: private
 spec:
+  type: LoadBalancer
   ports:
     - name: http
       port: 8080
@@ -13,5 +16,3 @@ spec:
       protocol: TCP
   selector:
     app: shinobi-main
-status:
-  loadBalancer: {}

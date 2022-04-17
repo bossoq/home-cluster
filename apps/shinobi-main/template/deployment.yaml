@@ -28,7 +28,7 @@ spec:
             - name: APP_BRANCH
               value: master
           volumeMounts:
-            - mountPath: /opt/shinobi/videos
+            - mountPath: /home/Shinobi/videos
               name: shinobi-main-video
             - mountPath: /config
               name: shinobi-main-data

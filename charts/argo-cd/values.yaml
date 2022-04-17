@@ -126,7 +126,7 @@ argo-cd:
       enabled: true
       annotations: {}
       labels: {}
-      ingressClassName: "nginx"
+      ingressClassName: "traefik"
       hosts:
         - argocd.picturo.us
       paths:

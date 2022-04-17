@@ -124,9 +124,10 @@ argo-cd:
           warn: false
     ingress:
       enabled: true
-      annotations: {}
+      annotations:
+        metallb.universe.tf/address-pool: private
       labels: {}
-      ingressClassName: "traefik"
+      ingressClassName: ""
       hosts:
         - argocd.picturo.us
       paths:

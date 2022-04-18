@@ -123,9 +123,9 @@ argo-cd:
         orphanedResources:
           warn: false
     ingress:
-      enabled: false
-      annotations:
-        metallb.universe.tf/address-pool: private
+      enabled: true
+      # annotations:
+      #   metallb.universe.tf/address-pool: private
       labels: {}
       ingressClassName: ""
       hosts:

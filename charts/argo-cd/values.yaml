@@ -124,8 +124,8 @@ argo-cd:
           warn: false
     ingress:
       enabled: true
-      # annotations:
-      #   metallb.universe.tf/address-pool: private
+      annotations:
+        kubernetes.io/ingress.class: traefik
       labels: {}
       ingressClassName: ""
       hosts:

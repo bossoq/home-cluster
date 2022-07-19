@@ -7,14 +7,8 @@ metadata:
   name: shinobi-main
   annotations:
     kubernetes.io/ingress.class: traefik
-    # traefik.ingress.kubernetes.io/router.tls: "true"
-    # traefik.ingress.kubernetes.io/router.entrypoints: https
     cert-manager.io/cluster-issuer: cloudflare
 spec:
-  # tls:
-  # - hosts:
-  #   - hikvisionserver.picturo.us
-  #   secretName: streamie-tls
   rules:
     - host: hikvisionserver.picturo.us
       http:

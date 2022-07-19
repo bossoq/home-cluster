@@ -1,5 +1,5 @@
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
   creationTimestamp: null
   labels:
@@ -8,7 +8,6 @@ metadata:
   annotations:
     metallb.universe.tf/address-pool: private
 spec:
-  type: LoadBalancer
   ports:
     - name: http
       port: 8080

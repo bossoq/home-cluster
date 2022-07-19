@@ -5,8 +5,6 @@ metadata:
   labels:
     app: shinobi-main
   name: shinobi-main
-  annotations:
-    metallb.universe.tf/address-pool: private
 spec:
   ports:
     - name: http

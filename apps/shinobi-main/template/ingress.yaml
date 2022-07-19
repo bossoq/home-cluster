@@ -5,17 +5,11 @@ metadata:
   labels:
     app: shinobi-main
   name: shinobi-main
-  annotations:
-    kubernetes.io/ingress.class: traefik
 spec:
   rules:
     - host: hikvisionserver.picturo.us
       http:
         paths:
           - backend:
-              service:
-                name: shinobi-main
-                port:
-                  number: 8080
-            path: /
-            pathType: Prefix
+              serviceName: shinobi-main
+              servicePort: 8080

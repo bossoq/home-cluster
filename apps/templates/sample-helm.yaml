@@ -10,7 +10,7 @@ spec:
     server: "{{ .Values.spec.destination.server }}"
   project: default
   source:
-    path: apps/sample-helm
+    path: apps/
     repoURL: "{{ .Values.spec.repo.url }}"
     targetRevision: "{{ .Values.spec.repo.revision }}"
     helm:

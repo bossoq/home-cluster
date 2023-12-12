@@ -12,10 +12,6 @@ argo-cd:
         type: helm
         name: argo-cd
         url: https://argoproj.github.io/argo-helm
-      bitnami-helm-repo:
-        type: helm
-        name: bitnami
-        url: https://charts.bitnami.com/bitnami
       jetstack-helm-repo:
         type: helm
         name: jetstack

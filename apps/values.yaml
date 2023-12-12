@@ -1,0 +1,6 @@
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  repo:
+    url: https://github.com/bossoq/home-cluster.git
+    revision: main

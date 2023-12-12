@@ -4,16 +4,20 @@ argo-cd:
 
   configs:
     repositories:
-      - type: git
+      home-cluster-git-repo:
+        type: git
         name: home-cluster
         url: https://github.com/bossoq/home-cluster.git
-      - type: helm
+      argo-cd-helm-repo:
+        type: helm
         name: argo-cd
         url: https://argoproj.github.io/argo-helm
-      - type: helm
+      bitnami-helm-repo:
+        type: helm
         name: bitnami
         url: https://charts.bitnami.com/bitnami
-      - type: helm
+      jetstack-helm-repo:
+        type: helm
         name: jetstack
         url: https://charts.jetstack.io
 

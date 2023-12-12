@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sample-helm
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: sample
+    server: "{{ .Values.spec.destination.server }}"
+  project: default
+  source:
+    path: apps/sample-helm
+    repoURL: "{{ .Values.spec.repo.url }}"
+    targetRevision: "{{ .Values.spec.repo.revision }}"
+    helm:
+      valueFiles:
+        - values.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  syncOptions:
+    - CreateNamespace=true
+    - ApplyOutOfSyncOnly=true

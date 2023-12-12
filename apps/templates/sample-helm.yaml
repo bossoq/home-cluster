@@ -6,9 +6,9 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: sample
+    namespace: apps
     server: "{{ .Values.spec.destination.server }}"
-  project: default
+  project: apps
   source:
     path: apps/
     repoURL: "{{ .Values.spec.repo.url }}"

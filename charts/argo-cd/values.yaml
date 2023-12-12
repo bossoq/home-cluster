@@ -53,7 +53,7 @@ argo-cd:
           server: https://kubernetes.default.svc
         project: apps
         source:
-          path: apps/
+          path: apps
           repoURL: https://github.com/bossoq/home-cluster.git
           targetRevision: HEAD
         syncPolicy:

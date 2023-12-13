@@ -49,9 +49,9 @@ argo-cd:
       - name: apps
         namespace: argocd
         destination:
-          namespace: apps
+          namespace: argocd
           server: https://kubernetes.default.svc
-        project: apps
+        project: default
         source:
           path: apps
           repoURL: https://github.com/bossoq/home-cluster.git
@@ -81,27 +81,27 @@ argo-cd:
         orphanedResources:
           warn: false
 
-      - name: apps
-        namespace: argocd
-        additionalLabels: {}
-        additionalAnnotations: {}
-        description: Apps Project
-        sourceRepos:
-          - "*"
-        destinations:
-          - namespace: argocd
-            server: https://kubernetes.default.svc
-          - namespace: apps
-            server: https://kubernetes.default.svc
-          - namespace: kube-system
-            server: https://kubernetes.default.svc
-          # - namespace: cert-manager
-          #   server: https://kubernetes.default.svc
-        clusterResourceWhitelist:
-          - group: "*"
-            kind: "*"
-        orphanedResources:
-          warn: false
+      # - name: apps
+      #   namespace: argocd
+      #   additionalLabels: {}
+      #   additionalAnnotations: {}
+      #   description: Apps Project
+      #   sourceRepos:
+      #     - "*"
+      #   destinations:
+      #     - namespace: argocd
+      #       server: https://kubernetes.default.svc
+      #     - namespace: apps
+      #       server: https://kubernetes.default.svc
+      #     - namespace: kube-system
+      #       server: https://kubernetes.default.svc
+      #     # - namespace: cert-manager
+      #     #   server: https://kubernetes.default.svc
+      #   clusterResourceWhitelist:
+      #     - group: "*"
+      #       kind: "*"
+      #   orphanedResources:
+      #     warn: false
 
   repoServer:
     volumes:

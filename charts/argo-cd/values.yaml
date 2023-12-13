@@ -149,7 +149,7 @@ argo-cd:
         value: "true"
       - name: HELM_SECRETS_HELM_PATH
         value: /usr/local/bin/helm
-      - name: HELM_SECRETS_LOAD_GPG_KEYS
+      - name: SOPS_AGE_KEY_FILE
         # Multiple keys can be separated by space
         value: /helm-secrets-private-keys/key.txt
     initContainers:

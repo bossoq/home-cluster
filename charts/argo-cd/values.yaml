@@ -69,6 +69,24 @@ argo-cd:
           syncOptions:
             - CreateNamespace=true
 
+      # Root app of infra '/infra' path
+      - name: infra
+        namespace: infra
+        destination:
+          namespace: infra
+          server: https://kubernetes.default.svc
+        project: infra
+        source:
+          path: infra
+          repoURL: https://github.com/bossoq/home-cluster.git
+          targetRevision: HEAD
+        syncPolicy:
+          automated:
+            prune: true
+            selfHeal: true
+          syncOptions:
+            - CreateNamespace=true
+
     additionalProjects:
       # Default Project for ArgoCD
       - name: argocd
@@ -87,27 +105,27 @@ argo-cd:
         orphanedResources:
           warn: false
 
-      # - name: apps
-      #   namespace: argocd
-      #   additionalLabels: {}
-      #   additionalAnnotations: {}
-      #   description: Apps Project
-      #   sourceRepos:
-      #     - "*"
-      #   destinations:
-      #     - namespace: argocd
-      #       server: https://kubernetes.default.svc
-      #     - namespace: apps
-      #       server: https://kubernetes.default.svc
-      #     - namespace: kube-system
-      #       server: https://kubernetes.default.svc
-      #     # - namespace: cert-manager
-      #     #   server: https://kubernetes.default.svc
-      #   clusterResourceWhitelist:
-      #     - group: "*"
-      #       kind: "*"
-      #   orphanedResources:
-      #     warn: false
+      - name: infra
+        namespace: infra
+        additionalLabels: {}
+        additionalAnnotations: {}
+        description: Infrastructure Project
+        sourceRepos:
+          - "*"
+        destinations:
+          - namespace: argocd
+            server: https://kubernetes.default.svc
+          - namespace: infra
+            server: https://kubernetes.default.svc
+          - namespace: kube-system
+            server: https://kubernetes.default.svc
+          - namespace: cert-manager
+            server: https://kubernetes.default.svc
+        clusterResourceWhitelist:
+          - group: "*"
+            kind: "*"
+        orphanedResources:
+          warn: false
 
   repoServer:
     volumes:

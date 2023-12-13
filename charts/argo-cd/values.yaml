@@ -133,7 +133,7 @@ argo-cd:
       labels: {}
       ingressClassName: ""
       hosts:
-        - host: argocd.picturo.us
+        - argocd.picturo.us
       paths:
         - /
       pathType: Prefix

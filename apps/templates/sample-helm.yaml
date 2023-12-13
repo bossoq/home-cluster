@@ -13,8 +13,8 @@ spec:
   project: default
   source:
     path: apps/sample-helm
-    repoURL: "{{ .Values.spec.repo.url }}"
-    targetRevision: "{{ .Values.spec.repo.revision }}"
+    repoURL: "{{ .Values.repo.url }}"
+    targetRevision: "{{ .Values.repo.revision }}"
     helm:
       valueFiles:
         # Method 1: Mount the gpg/age key from a kubernetes secret as volume

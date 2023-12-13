@@ -116,6 +116,10 @@ argo-cd:
       - mountPath: /custom-tools
         name: custom-tools
     env:
+      - name: XDG_CONFIG_HOME
+        value: /.config
+      - name: SOPS_AGE_KEY_FILE
+        value: /helm-secrets-private-keys/key.txt
       - name: HELM_PLUGIN
         value: /custom-tools/helm-plugins/
       - name: HELM_SECRETS_HELM_PATH
@@ -124,8 +128,6 @@ argo-cd:
         value: /custom-tools/sops
       - name: HELM_SECRETS_KUBECTL_PATH
         value: /custom-tools/kubectl
-      - name: HELM_SECRETS_BACKEND
-        value: sops
       - name: HELM_SECRETS_VALUES_ALLOW_SYMLINKS
         value: "false"
       - name: HELM_SECRETS_VALUES_ALLOW_ABSOLUTE_PATH

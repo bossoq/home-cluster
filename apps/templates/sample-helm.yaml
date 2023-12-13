@@ -10,7 +10,7 @@ spec:
   destination:
     namespace: argocd
     server: "{{ .Values.spec.destination.server }}"
-  project: apps
+  project: default
   source:
     path: apps/sample-helm
     repoURL: "{{ .Values.spec.repo.url }}"

@@ -127,6 +127,22 @@ argo-cd:
         orphanedResources:
           warn: false
 
+    ingress:
+      enabled: true
+      annotations: {}
+      labels: {}
+      ingressClassName: ""
+      hosts:
+        - host: argocd.picturo.us
+      paths:
+        - /
+      pathType: Prefix
+      extraPaths:
+        []
+      tls:
+        []
+      https: false
+
   repoServer:
     volumes:
       - name: helm-secrets-private-keys

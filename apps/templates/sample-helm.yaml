@@ -8,9 +8,9 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: apps
+    namespace: argocd
     server: "{{ .Values.spec.destination.server }}"
-  project: apps
+  project: default
   source:
     path: apps/sample-helm
     repoURL: "{{ .Values.spec.repo.url }}"

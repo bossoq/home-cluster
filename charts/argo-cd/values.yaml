@@ -16,17 +16,18 @@ argo-cd:
         type: helm
         name: jetstack
         url: https://charts.jetstack.io
+    cm:
+      helm.valuesFileSchemes: >-
+        secrets+gpg-import, secrets+gpg-import-kubernetes,
+        secrets+age-import, secrets+age-import-kubernetes,
+        secrets,secrets+literal,
+        https
 
   server:
     extraArgs:
       - --insecure
     config:
       kustomize.buildOptions: "--enable-alpha-plugins"
-      helm.valuesFileSchemes: >-
-        secrets+gpg-import, secrets+gpg-import-kubernetes,
-        secrets+age-import, secrets+age-import-kubernetes,
-        secrets,
-        https
 
     additionalApplications:
       # Self-managed ArgoCD
@@ -115,25 +116,37 @@ argo-cd:
         name: helm-secrets-private-keys
       - mountPath: /custom-tools
         name: custom-tools
+      - mountPath: /usr/local/sbin/helm
+        subPath: helm
+        name: custom-tools
     env:
-      - name: XDG_CONFIG_HOME
-        value: /.config
-      - name: SOPS_AGE_KEY_FILE
-        value: /helm-secrets-private-keys/key.txt
-      - name: HELM_PLUGIN
+      - name: HELM_PLUGINS
         value: /custom-tools/helm-plugins/
-      - name: HELM_SECRETS_HELM_PATH
-        value: /usr/local/bin/helm
+      - name: HELM_SECRETS_CURL_PATH
+        value: /custom-tools/curl
       - name: HELM_SECRETS_SOPS_PATH
         value: /custom-tools/sops
+      - name: HELM_SECRETS_VALS_PATH
+        value: /custom-tools/vals
       - name: HELM_SECRETS_KUBECTL_PATH
         value: /custom-tools/kubectl
+      - name: HELM_SECRETS_BACKEND
+        value: sops
       - name: HELM_SECRETS_VALUES_ALLOW_SYMLINKS
         value: "false"
       - name: HELM_SECRETS_VALUES_ALLOW_ABSOLUTE_PATH
-        value: "false"
+        value: "true"
       - name: HELM_SECRETS_VALUES_ALLOW_PATH_TRAVERSAL
         value: "false"
+      - name: HELM_SECRETS_WRAPPER_ENABLED
+        value: "true"
+      - name: HELM_SECRETS_DECRYPT_SECRETS_IN_TMP_DIR
+        value: "true"
+      - name: HELM_SECRETS_HELM_PATH
+        value: /usr/local/bin/helm
+      - name: HELM_SECRETS_LOAD_GPG_KEYS
+        # Multiple keys can be separated by space
+        value: /helm-secrets-private-keys/key.txt
     initContainers:
       - name: download-tools
         image: alpine:latest
@@ -141,19 +154,22 @@ argo-cd:
         command: [sh, -ec]
         env:
           - name: HELM_SECRETS_VERSION
-            value: "3.12.0"
+            value: "4.5.1"
           - name: KUBECTL_VERSION
-            value: "1.22.4"
+            value: "1.26.1"
+          - name: VALS_VERSION
+            value: "0.24.0"
           - name: SOPS_VERSION
-            value: "3.7.2"
+            value: "3.8.1"
         args:
           - |
             mkdir -p /custom-tools/helm-plugins
             wget -qO- https://github.com/jkroepke/helm-secrets/releases/download/v${HELM_SECRETS_VERSION}/helm-secrets.tar.gz | tar -C /custom-tools/helm-plugins -xzf-;
-
+            wget -qO /custom-tools/curl https://github.com/moparisthebest/static-curl/releases/latest/download/curl-amd64
             wget -qO /custom-tools/sops https://github.com/getsops/sops/releases/download/v${SOPS_VERSION}/sops-v${SOPS_VERSION}.linux.amd64
             wget -qO /custom-tools/kubectl https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl
-
+            wget -qO- https://github.com/helmfile/vals/releases/download/v${VALS_VERSION}/vals_${VALS_VERSION}_linux_amd64.tar.gz | tar -xzf- -C /custom-tools/ vals;
+            cp /custom-tools/helm-plugins/helm-secrets/scripts/wrapper/helm.sh /custom-tools/helm
             chmod +x /custom-tools/*
         volumeMounts:
           - mountPath: /custom-tools

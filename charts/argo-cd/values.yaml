@@ -143,7 +143,9 @@ argo-cd:
       extraPaths:
         []
       tls:
-        []
+        - secretName: argocd-tls
+          hosts:
+            - argocd.picturo.us
       https: true
 
     certificate:

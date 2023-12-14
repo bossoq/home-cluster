@@ -24,8 +24,8 @@ argo-cd:
         https
 
   server:
-    extraArgs:
-      - --insecure
+    # extraArgs:
+    #   - --insecure
     config:
       kustomize.buildOptions: "--enable-alpha-plugins"
       helm.valuesFileSchemes: >-

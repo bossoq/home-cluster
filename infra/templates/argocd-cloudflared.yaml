@@ -6,6 +6,7 @@ metadata:
 type: Opaque
 data:
   credentials.json: "{{ .Values.secrets.ARGOCD_TUNNEL_CREDENTIALS }}"
+  cert.pem: "{{ .Values.secrets.ARGOCD_TUNNEL_CERT }}"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -51,6 +52,8 @@ spec:
             - name: creds
               mountPath: /etc/cloudflared/creds
               readOnly: true
+            - name: cert
+              mountPath: ~/.cloudflared
       volumes:
         - name: creds
           secret:
@@ -61,6 +64,9 @@ spec:
             # --from-file=credentials.json=/Users/yourusername/.cloudflared/<tunnel ID>.json
             # ```
             secretName: argocd-tunnel-credentials
+        - name: cert
+          secret:
+            secretName: cloudflared-cert
         # Create a config.yaml file from the ConfigMap below.
         - name: config
           configMap:

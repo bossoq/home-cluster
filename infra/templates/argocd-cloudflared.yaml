@@ -103,7 +103,7 @@ data:
     ingress:
       # The first rule proxies traffic to the nginx sample Service defined in app.yaml
       - hostname: argocd.picturo.us
-        service: http://argo-cd-argocd-server:80
+        service: http://argocd.picturo.us:80
 
       # This rule sends traffic to the built-in hello-world HTTP server. This can help debug connectivity
       # issues. If hello.example.com resolves and tunnel.example.com does not, then the problem is

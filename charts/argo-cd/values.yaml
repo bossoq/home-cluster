@@ -22,10 +22,6 @@ argo-cd:
         secrets+age-import, secrets+age-import-kubernetes,
         secrets,secrets+literal,
         https
-    secret:
-      createSecret: true
-      labels: {}
-      annotations: {}
 
   server:
     extraArgs:

@@ -88,7 +88,7 @@ data:
     tunnel: argocd
     credentials-file: /etc/cloudflared/creds/credentials.json
     # Serves the metrics server under /metrics and the readiness server under /ready
-    # metrics: 0.0.0.0:2000
+    metrics: 0.0.0.0:2000
     # Autoupdates applied in a k8s pod will be lost when the pod is removed or restarted, so
     # autoupdate doesn't make sense in Kubernetes. However, outside of Kubernetes, we strongly
     # recommend using autoupdate.

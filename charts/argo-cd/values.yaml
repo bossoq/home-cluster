@@ -141,7 +141,12 @@ argo-cd:
         - /
       pathType: Prefix
       extraPaths:
-        []
+        - path: /*
+          pathType: Prefix
+          backend:
+            service: ssl-redirect
+            port:
+              name: use-annotation
       tls:
         - secretName: argocd-tls
           hosts:

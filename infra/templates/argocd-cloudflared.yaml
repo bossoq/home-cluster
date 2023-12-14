@@ -5,7 +5,7 @@ metadata:
   namespace: cert-manager
 type: Opaque
 data:
-  credentials.json: "{{ .Values.secrets.ARGOCD_TUNNEL_CREDENTIALS | toPrettyJson }}"
+  credentials.json: "{{ .Values.secrets.ARGOCD_TUNNEL_CREDENTIALS | b64enc }}"
 ---
 apiVersion: apps/v1
 kind: Deployment

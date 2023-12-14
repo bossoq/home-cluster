@@ -153,7 +153,7 @@ argo-cd:
         - secretName: argocd-server-tls
           hosts:
             - argocd.picturo.us
-      https: true
+      https: false
 
     certificate:
       enabled: true

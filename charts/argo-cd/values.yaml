@@ -26,7 +26,6 @@ argo-cd:
       createSecret: true
       labels: {}
       annotations: {}
-      githubSecret: "{{ Values.secrets.GITHUB_SECRETS }}"
 
   server:
     extraArgs:

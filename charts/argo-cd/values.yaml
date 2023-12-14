@@ -83,7 +83,6 @@ argo-cd:
           helm:
             valueFiles:
               - secrets+age-import:///helm-secrets-private-keys/key.txt?secret-values.enc.yaml
-              - secrets+age-import:///helm-secrets-private-keys/key.txt?argocd-tunnel-credentials.enc.json
         syncPolicy:
           automated:
             prune: true

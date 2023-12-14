@@ -5,7 +5,7 @@ metadata:
   namespace: infra
 type: Opaque
 data:
-  credentials.json: "{{ .Values.ARGOCD_TUNNEL_CREDENTIALS }}"
+  credentials.json: "{{ .Values.secrets.ARGOCD_TUNNEL_CREDENTIALS }}"
 ---
 apiVersion: apps/v1
 kind: Deployment

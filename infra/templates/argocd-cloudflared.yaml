@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: argocd-tunnel-credentials
-  namespace: cert-manager
+  namespace: infra
 type: Opaque
 data:
   credentials.json: "{{ .Values.secrets.ARGOCD_TUNNEL_CREDENTIALS }}"

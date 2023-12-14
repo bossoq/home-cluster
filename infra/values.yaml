@@ -4,3 +4,5 @@ spec:
 repo:
   url: https://github.com/bossoq/home-cluster.git
   revision: main
+letsencrypt:
+  email: kwajakajornrit@gmail.com

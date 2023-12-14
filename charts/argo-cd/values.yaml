@@ -62,6 +62,9 @@ argo-cd:
           path: apps
           repoURL: https://github.com/bossoq/home-cluster.git
           targetRevision: HEAD
+          helm:
+            valueFiles:
+              - secrets+age-import:///helm-secrets-private-keys/key.txt?secret-values.enc.yaml
         syncPolicy:
           automated:
             prune: true

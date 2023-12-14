@@ -149,14 +149,14 @@ argo-cd:
               port:
                 name: use-annotation
       tls:
-        - secretName: argocd-tls
+        - secretName: argocd-server-tls
           hosts:
             - argocd.picturo.us
       https: true
 
     certificate:
       enabled: true
-      secretName: argocd-tls
+      secretName: argocd-server-tls
       domain: argocd.picturo.us
       issuer:
         kind: ClusterIssuer

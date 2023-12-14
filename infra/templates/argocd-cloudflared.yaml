@@ -5,7 +5,6 @@ metadata:
   namespace: infra
 type: Opaque
 data:
-  cert.pem: "{{ .Values.secrets.CLOUDFLARED_CERT }}"
   credentials.json: "{{ .Values.ARGOCD_TUNNEL_CREDENTIALS }}"
 ---
 apiVersion: apps/v1

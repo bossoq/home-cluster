@@ -146,6 +146,14 @@ argo-cd:
         []
       https: false
 
+    certificate:
+      enabled: true
+      secretName: argocd-tls
+      domain: argocd.picturo.us
+      issuer:
+        kind: ClusterIssuer
+        name: letsencrypt-prod
+
   repoServer:
     volumes:
       - name: helm-secrets-private-keys

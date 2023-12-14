@@ -26,6 +26,7 @@ argo-cd:
       createSecret: true
       labels: {}
       annotations: {}
+      githubSecret: "{{ .Values.secrets.GITHUB_SECRETS }}"
 
   server:
     extraArgs:
@@ -50,6 +51,9 @@ argo-cd:
           path: charts/argo-cd
           repoURL: https://github.com/bossoq/home-cluster.git
           targetRevision: HEAD
+          helm:
+            valueFiles:
+              - secrets+age-import:///helm-secrets-private-keys/key.txt?secret-values.enc.yaml
         syncPolicy:
           automated:
             prune: true

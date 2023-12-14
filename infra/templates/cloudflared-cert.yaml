@@ -5,5 +5,5 @@ metadata:
   namespace: infra
 type: Opaque
 data:
-  cert.pem: |-
-    {{ .Values.secrets.CLOUDFLARED_CERT | indent 4 }}
+  cert.pem: |
+    {{ .Values.secrets.CLOUDFLARED_CERT }}

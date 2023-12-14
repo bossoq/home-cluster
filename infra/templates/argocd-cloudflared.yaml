@@ -6,7 +6,7 @@ metadata:
 type: Opaque
 data:
   # cert.pem: "{{ .Values.secrets.CLOUDFLARED_CERT | b64enc | quote }}"
-  credentials.json: "{{ .Values.secrets.ARGOCD_TUNNEL_CREDENTIALS | toPrettyJson }}"
+  credentials.json: "{{ .Values.ARGOCD_TUNNEL_CREDENTIALS }}"
 ---
 apiVersion: apps/v1
 kind: Deployment

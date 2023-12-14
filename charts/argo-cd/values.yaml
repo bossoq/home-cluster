@@ -146,7 +146,7 @@ argo-cd:
           backend:
             service: ssl-redirect
             port:
-              name: use-annotation
+              number: 443
       tls:
         - secretName: argocd-tls
           hosts:

@@ -8,7 +8,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
 spec:
   rules:
-    - host: whoami.${DOMAIN}
+    - host: whoami.picturo.us
       http:
         paths:
           - path: /
@@ -21,4 +21,4 @@ spec:
   tls:
     - secretName: whoami-tls
       hosts:
-        - whoami.${DOMAIN}
+        - whoami.picturo.us

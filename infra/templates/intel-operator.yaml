@@ -10,7 +10,7 @@ spec:
   source:
     path: ""
     repoURL: "https://intel.github.io/helm-charts"
-    targetRevision: HEAD
+    targetRevision: "0.28.0"
     chart: intel/intel-device-plugins-operator
     helm:
       parameters:

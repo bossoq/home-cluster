@@ -24,4 +24,5 @@ spec:
     syncOptions:
       - CreateNamespace=true
   nodeSelector:
-    intel.feature.node.kubernetes.io/gpu=true
+    kubernetes.io/arch: amd64
+  sharedDevNum: 3

@@ -23,3 +23,5 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+  nodeSelector:
+    intel.feature.node.kubernetes.io/gpu=true

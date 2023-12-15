@@ -23,7 +23,3 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
----
-nodeSelector:
-  kubernetes.io/arch: amd64
-sharedDevNum: 3

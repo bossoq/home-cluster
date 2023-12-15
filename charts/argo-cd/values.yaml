@@ -16,6 +16,10 @@ argo-cd:
         type: helm
         name: jetstack
         url: https://charts.jetstack.io
+      intel-helm-repo:
+        type: helm
+        name: intel
+        url: https://intel.github.io/helm-charts
     cm:
       helm.valuesFileSchemes: >-
         secrets+gpg-import, secrets+gpg-import-kubernetes,

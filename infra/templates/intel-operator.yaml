@@ -12,12 +12,6 @@ spec:
     repoURL: "https://intel.github.io/helm-charts"
     targetRevision: "0.28.0"
     chart: intel-device-plugins-operator
-    helm:
-      parameters:
-        - name: installCRDs
-          value: "true"
-        - name: resourceManager
-          value: "true"
   project: infra
   syncPolicy:
     automated:

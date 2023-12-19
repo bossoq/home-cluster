@@ -20,6 +20,10 @@ argo-cd:
         type: helm
         name: intel
         url: https://intel.github.io/helm-charts
+      nfd-helm-repo:
+        type: helm
+        name: nfd
+        url: https://raw.githubusercontent.com/kubernetes-sigs/node-feature-discovery/master/charts
     cm:
       helm.valuesFileSchemes: >-
         secrets+gpg-import, secrets+gpg-import-kubernetes,

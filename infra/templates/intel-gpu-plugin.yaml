@@ -14,8 +14,8 @@ spec:
     chart: intel-device-plugins-gpu
     helm:
       parameters:
-        - name: resourceManager
-          value: "true"
+        # - name: resourceManager
+        #   value: "true"
         - name: sharedDevNum
           value: "9"
   project: infra

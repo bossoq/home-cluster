@@ -17,7 +17,7 @@ spec:
               service:
                 name: jellyfin-tcp
                 port:
-                  number: http-tcp
+                  name: http-tcp
   tls:
     - secretName: jellyfin-tls
       hosts:

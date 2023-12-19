@@ -17,7 +17,7 @@ spec:
         - name: resourceManager
           value: "true"
         - name: sharedDevNum
-          value: "9"
+          value: "10"
   project: infra
   syncPolicy:
     automated:

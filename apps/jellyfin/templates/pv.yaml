@@ -11,6 +11,14 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   local:
     path: /mnt/jellyfin-config
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - dockerhost
 ---
 apiVersion: v1
 kind: PersistentVolume

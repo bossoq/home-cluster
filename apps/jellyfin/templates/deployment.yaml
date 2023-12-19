@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jellyfin
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: jellyfin
+  template:
+    metadata:
+      labels:
+        app: jellyfin
+    spec:
+      volumes:
+        - name: jellyfin-config
+          persistentVolumeClaim:
+            claimName: jellyfin-config
+        - name: jellyfin-data
+          persistentVolumeClaim:
+            claimName: jellyfin-data
+      containers:
+        - env:
+          - name: PUID
+            value: "99"
+          - name: PGID
+            value: "100"
+          - name: TZ
+            value: Asia/Bangkok
+          securityContext:
+            privileged: true
+          image: ghcr.io/linuxserver/jellyfin
+          imagePullPolicy: IfNotPresent
+          name: jellyfin
+          ports:
+            - containerPort: 8096
+              name: http-tcp
+              protocol: TCP
+            - containerPort: 8920
+              name: https-tcp
+              protocol: TCP
+            - containerPort: 1900
+              name: dlna-udp
+              protocol: UDP
+            - containerPort: 7359
+              name: discovery-udp
+              protocol: UDP
+          resources:
+            requests:
+              gpu.intel.com/i915: "1"
+            limits:
+              gpu.intel.com/i915: "1"
+          stdin: true
+          tty: true
+          volumeMounts:
+            - mountPath: /config
+              name: jellyfin-config
+            - mountPath: /data
+              name: jellyfin-data
+      restartPolicy: Always

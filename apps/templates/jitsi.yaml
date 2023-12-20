@@ -21,7 +21,7 @@ spec:
         - name: jvb.service.type
           value: LoadBalancer
         - name: jvb.publicIPs
-          value: "10.0.0.24"
+          value: ["10.0.0.24"]
         - name: jibri.enabled
           value: "true"
         - name: jibri.singleUseMode

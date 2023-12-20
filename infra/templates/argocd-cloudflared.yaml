@@ -10,16 +10,16 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cloudflared
+  name: argocd-cloudflared
 spec:
   selector:
     matchLabels:
-      app: cloudflared
+      app: argocd-cloudflared
   replicas: 2 # You could also consider elastic scaling for this deployment
   template:
     metadata:
       labels:
-        app: cloudflared
+        app: argocd-cloudflared
     spec:
       containers:
         - name: cloudflared
@@ -81,7 +81,7 @@ spec:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: cloudflared
+  name: argocd-cloudflared
 data:
   config.yaml: |
     # Name of the tunnel you want to run

@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jitsi-web
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: jitsi-web
+  template:
+    metadata:
+      labels:
+        app: jitsi-web
+    spec:
+      containers:
+        - env:
+          - name: ENABLE_AUTH
+            value: "1"
+          - name: ENABLE_IPV6
+            value: "0"
+          - name: ENABLE_NOISY_MIC_DETECTION
+            value: "0"
+          - name: ENABLE_PREJOIN_PAGE
+            value: "1"
+          - name: ENABLE_RECORDING
+            value: "1"
+          - name: ENABLE_WELCOME_PAGE
+            value: "0"
+          - name: ENABLE_XMPP_NBCONFPART
+            value: "1"
+          - name: JICOFO_AUTH_USER
+            value: focus
+          - name: PUBLIC_URL
+            value: https://meet.picturo.us
+          - name: RESOLUTION
+            value: "1080"
+          - name: RESOLUTION_MIN
+            value: "480"
+          - name: RESOLUTION_WIDTH
+            value: "1920"
+          - name: RESOLUTION_WIDTH_MIN
+            value: "640"
+          - name: TZ
+            value: Asia/Bangkok
+          - name: XMPP_AUTH_DOMAIN
+            value: auth.meet.picturo.us
+          - name: XMPP_BOSH_URL_BASE
+            value: http://xmpp.meet.picturo.us:5280
+          - name: XMPP_DOMAIN
+            value: meet.picturo.us
+          - name: XMPP_GUEST_DOMAIN
+            value: guest.meet.picturo.us
+          - name: XMPP_MUC_DOMAIN
+            value: muc.meet.picturo.us
+          - name: XMPP_PORT
+            value: "5222"
+          - name: XMPP_RECORDER_DOMAIN
+            value: recorder.meet.picturo.us
+          image: "{{ .Values.web.image.repository }}:{{ .Values.web.image.tag }}"
+          imagePullPolicy: "{{ .Values.web.image.pullPolicy }}"
+          name: jitsi-web
+          ports:
+            - containerPort: 80
+              hostPort: 80
+              protocol: TCP
+            - containerPort: 443
+              hostPort: 443
+              protocol: TCP
+          resources: {}
+          volumeMounts:
+            - mountPath: /config
+              name: jitsi-web-config
+            - mountPath: /var/spool/cron/crontabs
+              name: jitsi-web-crontabs
+            - mountPath: /usr/share/jitsi-meet/transcripts
+              name: jitsi-web-transcripts
+      volumes:
+        - name: jitsi-web-config
+          persistentVolumeClaim:
+            claimName: jitsi-web-config
+        - name: jitsi-web-crontabs
+          persistentVolumeClaim:
+            claimName: jitsi-web-crontabs
+        - name: jitsi-web-transcripts
+          persistentVolumeClaim:
+            claimName: jitsi-web-transcripts
+      restartPolicy: Always

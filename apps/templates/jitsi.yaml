@@ -12,34 +12,10 @@ spec:
     server: "{{ .Values.spec.destination.server }}"
   project: default
   source:
-    path: ""
-    repoURL: "https://jitsi-contrib.github.io/jitsi-helm"
-    targetRevision: "1.3.8"
-    chart: jitsi-meet
+    path: apps/jitsi
+    repoURL: "{{ .Values.repo.url }}"
+    targetRevision: "{{ .Values.repo.revision }}"
     helm:
-      parameters:
-        - name: publicURL
-          value: "https://meet.picturo.us"
-        - name: jvb.service.type
-          value: "NodePort"
-        - name: jvb.service.nodePort
-          value: "30000"
-        - name: jibri.enabled
-          value: "true"
-        - name: jibri.singleUseMode
-          value: "false"
-        - name: jibri.replicaCount
-          value: "1"
-        - name: jibri.recording
-          value: "true"
-        - name: jibri.livestreaming
-          value: "false"
-        - name: jibri.persistence.enabled
-          value: "true"
-        - name: jibri.persistence.size
-          value: 32Gi
-        - name: jibri.shm.enabled
-          value: "true"
       valueFiles:
         # Method 1: Mount the gpg/age key from a kubernetes secret as volume
         # secrets+gpg-import://<key-volume-mount>/<key-name>.asc?<relative/path/to/the/encrypted/secrets.yaml>

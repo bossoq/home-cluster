@@ -1,6 +1,14 @@
-spec:
-  destination:
-    server: https://kubernetes.default.svc
-repo:
-  url: https://github.com/bossoq/home-cluster.git
-  revision: main
+jvb:
+  publicIPs:
+    - 10.0.0.24
+jibri:
+  enabled: true
+  singleUseMode: false
+  replicaCount: 1
+  recording: true
+  livestreaming: false
+  persistence:
+    enabled: true
+    size: 32Gi
+  shm:
+    enabled: true

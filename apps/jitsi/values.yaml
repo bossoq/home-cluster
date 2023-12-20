@@ -1,7 +1,9 @@
 jvb:
-  useHostNetwork: true
-  publicIPs:
-    - 10.0.0.24
+  service:
+    type: LoadBalancer
+  # useHostNetwork: true
+  # publicIPs:
+  #   - 10.0.0.24
 jibri:
   enabled: true
   singleUseMode: false

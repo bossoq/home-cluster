@@ -1,4 +1,5 @@
 jvb:
+  useHostNetwork: true
   publicIPs:
     - 10.0.0.24
 jibri:

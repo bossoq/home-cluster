@@ -21,7 +21,9 @@ spec:
         - name: publicURL
           value: "https://meet.picturo.us"
         - name: jvb.service.type
-          value: LoadBalancer
+          value: "NodePort"
+        - name: jvb.service.nodePort
+          value: "30000"
         - name: jibri.enabled
           value: "true"
         - name: jibri.singleUseMode

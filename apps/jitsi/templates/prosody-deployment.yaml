@@ -98,16 +98,6 @@ spec:
           image: "{{ .Values.web.image.repository }}:{{ .Values.web.image.tag }}"
           imagePullPolicy: "{{ .Values.web.image.pullPolicy }}"
           name: jitsi-prosody
-          # ports:
-          #   - containerPort: 5222
-          #     hostPort: 5222
-          #     protocol: TCP
-          #   - containerPort: 5347
-          #     hostPort: 5347
-          #     protocol: TCP
-          #   - containerPort: 5280
-          #     hostPort: 5280
-          #     protocol: TCP
           resources: {}
           volumeMounts:
             - mountPath: /config

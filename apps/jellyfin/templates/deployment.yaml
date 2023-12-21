@@ -38,19 +38,19 @@ spec:
           image: ghcr.io/linuxserver/jellyfin
           imagePullPolicy: IfNotPresent
           name: jellyfin
-          # ports:
-          #   - containerPort: 8096
-          #     name: http-tcp
-          #     protocol: TCP
-          #   - containerPort: 8920
-          #     name: https-tcp
-          #     protocol: TCP
-          #   - containerPort: 1900
-          #     name: dlna-udp
-          #     protocol: UDP
-          #   - containerPort: 7359
-          #     name: discovery-udp
-          #     protocol: UDP
+          ports:
+            - containerPort: 8096
+              name: http-tcp
+              protocol: TCP
+            - containerPort: 8920
+              name: https-tcp
+              protocol: TCP
+            - containerPort: 1900
+              name: dlna-udp
+              protocol: UDP
+            - containerPort: 7359
+              name: discovery-udp
+              protocol: UDP
           resources:
             requests:
               gpu.intel.com/i915: "1"

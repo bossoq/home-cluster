@@ -20,4 +20,4 @@ spec:
               service:
                 name: jitsi-web
                 port:
-                  number: 8920
+                  number: 8096

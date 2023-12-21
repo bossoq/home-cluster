@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jitsi-jicofo
+  labels:
+    app: jitsi-jicofo
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: jitsi-jicofo
+  template:
+    metadata:
+      labels:
+        app: jitsi-jicofo
+    spec:
+      imagePullSecrets:
+        - name: dockerconfigjson-ghcr
+      containers:
+        - env:
+          - name: AUTH_TYPE
+            value: jwt
+          - name: ENABLE_AUTH
+            value: "0"
+          - name: ENABLE_RECORDING
+            value: "1"
+          - name: JIBRI_BREWERY_MUC
+            value: jibribrewery
+          - name: JIBRI_PENDING_TIMEOUT
+            value: "90"
+          - name: JICOFO_AUTH_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: jicofo-auth-password
+                name: jitsi-secret
+          - name: JICOFO_AUTH_USER
+            value: focus
+          - name: JICOFO_COMPONENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: jicofo-component-secret
+                name: jitsi-secret
+          - name: JVB_BREWERY_MUC
+            value: jvbbrewery
+          - name: SENTRY_DSN
+            value: '"0"'
+          - name: TZ
+            value: Asia/Bangkok
+          - name: XMPP_AUTH_DOMAIN
+            value: auth.meet.picturo.us
+          - name: XMPP_DOMAIN
+            value: meet.picturo.us
+          - name: XMPP_INTERNAL_MUC_DOMAIN
+            value: internal-muc.meet.picturo.us
+          - name: XMPP_MUC_DOMAIN
+            value: muc.meet.picturo.us
+          - name: XMPP_PORT
+            value: "5222"
+          - name: XMPP_RECORDER_DOMAIN
+            value: recorder.meet.picturo.us
+          - name: XMPP_SERVER
+            value: jitsi-prosody
+          image: "{{ .Values.jicofo.image.repository }}:{{ .Values.jicofo.image.tag }}"
+          imagePullPolicy: "{{ .Values.jicofo.image.pullPolicy }}"
+          name: jitsi-jicofo
+          resources: {}
+          volumeMounts:
+            - mountPath: /config
+              name: jitsi-jicofo-config
+      volumes:
+        - name: jitsi-jicofo-config
+          persistentVolumeClaim:
+            claimName: jitsi-jicofo-config
+      restartPolicy: Always

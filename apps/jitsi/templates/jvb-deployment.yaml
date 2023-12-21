@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jitsi-jvb
+  labels:
+    app: jitsi-jvb
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: jitsi-jvb
+  template:
+    metadata:
+      labels:
+        app: jitsi-jvb
+    spec:
+      imagePullSecrets:
+        - name: dockerconfigjson-ghcr
+      containers:
+        - env:
+          - name: JVB_ADVERTISE_IPS
+            value: meet.picturo.us
+          - name: JVB_AUTH_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: jvb-auth-password
+                name: jitsi-secret
+          - name: JVB_AUTH_USER
+            value: jvb
+          - name: JVB_BREWERY_MUC
+            value: jvbbrewery
+          - name: JVB_PORT
+            value: "50000"
+          - name: JVB_STUN_SERVERS
+            value: meet-jit-si-turnrelay.jitsi.net:443,stun.l.google.com:19302,stun1.l.google.com:19302,stun2.l.google.com:19302,stun3.l.google.com:19302,stun4.l.google.com:19302
+          - name: JVB_TCP_HARVESTER_DISABLED
+            value: "false"
+          - name: JVB_TCP_MAPPED_PORT
+            value: "54443"
+          - name: JVB_TCP_PORT
+            value: "54443"
+          - name: PUBLIC_URL
+            value: https://meet.picturo.us
+          - name: SENTRY_DSN
+            value: '"0"'
+          - name: TZ
+            value: Asia/Bangkok
+          - name: XMPP_AUTH_DOMAIN
+            value: auth.meet.picturo.us
+          - name: XMPP_INTERNAL_MUC_DOMAIN
+            value: internal-muc.meet.picturo.us
+          - name: XMPP_PORT
+            value: "5222"
+          - name: XMPP_SERVER
+            value: xmpp.meet.picturo.us
+          image: "{{ .Values.jvb.image.repository }}:{{ .Values.jvb.image.tag }}"
+          imagePullPolicy: "{{ .Values.jvb.image.pullPolicy }}"
+          name: jitsi-jvb
+          resources: {}
+          volumeMounts:
+            - mountPath: /config
+              name: jitsi-jvb-config
+          ports:
+            - containerPort: 50000
+              hostPort: 50000
+              protocol: UDP
+            - containerPort: 54443
+              hostPort: 54443
+              protocol: TCP
+      volumes:
+        - name: jitsi-jvb-config
+          persistentVolumeClaim:
+            claimName: jitsi-jvb-config
+      restartPolicy: Always

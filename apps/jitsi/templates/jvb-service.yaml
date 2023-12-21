@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jitsi-jvb
+spec:
+  selector:
+    app: jitsi-jvb
+  ports:
+    - port: 50000
+      targetPort: 50000
+      name: jvb-rtp
+      protocol: UDP
+    - port: 54443
+      targetPort: 54443
+      name: jvb-ws
+      protocol: TCP
+    - port: 8080
+      targetPort: 8080
+      name: http-jvb
+      protocol: TCP
+  type: ClusterIP

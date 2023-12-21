@@ -95,8 +95,8 @@ spec:
             value: "5222"
           - name: XMPP_RECORDER_DOMAIN
             value: recorder.meet.picturo.us
-          image: "{{ .Values.web.image.repository }}:{{ .Values.web.image.tag }}"
-          imagePullPolicy: "{{ .Values.web.image.pullPolicy }}"
+          image: "{{ .Values.prosody.image.repository }}:{{ .Values.prosody.image.tag }}"
+          imagePullPolicy: "{{ .Values.prosody.image.pullPolicy }}"
           name: jitsi-prosody
           resources: {}
           volumeMounts:

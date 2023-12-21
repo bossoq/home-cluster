@@ -52,7 +52,7 @@ spec:
           - name: XMPP_AUTH_DOMAIN
             value: auth.meet.picturo.us
           - name: XMPP_BOSH_URL_BASE
-            value: http://xmpp.meet.picturo.us:5280
+            value: http://jitsi-prosody:5280
           - name: XMPP_DOMAIN
             value: meet.picturo.us
           - name: XMPP_GUEST_DOMAIN

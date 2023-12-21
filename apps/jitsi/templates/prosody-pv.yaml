@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jitsi-prosody-config
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  local:
+    path: /mnt/jitsi/prosody/config
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - dockerhost
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jitsi-prosody-plugins
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  local:
+    path: /mnt/jitsi/prosody/prosody-plugins-custom
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - dockerhost

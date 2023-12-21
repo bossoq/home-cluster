@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jitsi-prosody-config
+spec:
+  storageClassName: ""
+  volumeName: jitsi-prosody-config
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 100Mi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jitsi-prosody-plugins
+spec:
+  storageClassName: ""
+  volumeName: jitsi-prosody-plugins
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 100Mi

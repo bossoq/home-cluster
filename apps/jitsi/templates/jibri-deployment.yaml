@@ -1,0 +1,103 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jitsi-jibri
+  labels:
+    app: jitsi-jibri
+spec:
+  replicas: 3
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: jitsi-jibri
+  template:
+    metadata:
+      labels:
+        app: jitsi-jibri
+    spec:
+      imagePullSecrets:
+        - name: dockerconfigjson-ghcr
+      containers:
+        - env:
+          - name: DISPLAY
+            value: :0
+          - name: JIBRI_BREWERY_MUC
+            value: jibribrewery
+          - name: JIBRI_FINALIZE_RECORDING_SCRIPT_PATH
+            value: /config/finalize.sh
+          - name: JIBRI_LOGS_DIR
+            value: /config/logs
+          - name: JIBRI_RECORDER_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: jibri-recorder-password
+                name: jitsi-secret
+          - name: JIBRI_RECORDER_USER
+            value: recorder
+          - name: JIBRI_RECORDING_DIR
+            value: /tmp/recordings
+          - name: JIBRI_RECORDING_RESOLUTION
+            value: 1920x1080
+          - name: JIBRI_STRIP_DOMAIN_JID
+            value: muc
+          - name: JIBRI_XMPP_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: jibri-xmpp-password
+                name: jitsi-secret
+          - name: JIBRI_XMPP_USER
+            value: jibri
+          - name: PUBLIC_URL
+            value: https://meet.picturo.us
+          - name: TZ
+            value: Asia/Bangkok
+          - name: XMPP_AUTH_DOMAIN
+            value: auth.meet.picturo.us
+          - name: XMPP_DOMAIN
+            value: meet.picturo.us
+          - name: XMPP_INTERNAL_MUC_DOMAIN
+            value: internal-muc.meet.picturo.us
+          - name: XMPP_MUC_DOMAIN
+            value: muc.meet.picturo.us
+          - name: XMPP_PORT
+            value: "5222"
+          - name: XMPP_RECORDER_DOMAIN
+            value: recorder.meet.picturo.us
+          - name: XMPP_SERVER
+            value: jitsi-prosody
+          image: "{{ .Values.jibri.image.repository }}:{{ .Values.jibri.image.tag }}"
+          imagePullPolicy: "{{ .Values.jibri.image.pullPolicy }}"
+          name: jitsi-jibri
+          resources:
+            requests:
+              gpu.intel.com/i915: "1"
+            limits:
+              gpu.intel.com/i915: "1"
+          securityContext:
+            capabilities:
+              add:
+                - SYS_ADMIN
+                - NET_BIND_SERVICE
+          volumeMounts:
+            - mountPath: /config
+              name: jitsi-jibri-config
+            - mountPath: /recordings
+              name: jitsi-jibri-recordings
+            - mountPath: /dev/shm
+              name: shm
+      volumes:
+        - name: jitsi-jibri-config
+          persistentVolumeClaim:
+            claimName: jitsi-jibri-config
+        - name: jitsi-jibri-recordings
+          persistentVolumeClaim:
+            claimName: jitsi-jibri-recordings
+        - name: shm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 4Gi
+      restartPolicy: Always

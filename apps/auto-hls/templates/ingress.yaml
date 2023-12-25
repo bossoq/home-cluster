@@ -18,6 +18,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: autohls-web
+                name: autohls
                 port:
                   number: 3000

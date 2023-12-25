@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: autohls
+spec:
+  selector:
+    app: autohls
+  ports:
+    - port: 3000
+      targetPort: 3000
+      name: http-web
+      protocol: TCP
+  type: ClusterIP

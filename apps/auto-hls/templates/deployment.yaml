@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: autohls
+  labels:
+    app: autohls
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: autohls
+  template:
+    metadata:
+      labels:
+        app: autohls
+    spec:
+      imagePullSecrets:
+        - name: dockerconfigjson-ghcr
+      containers:
+        - env:
+          - name: SOURCE
+            value: "/source/"
+          - name: DEST
+            value: "/dest/"
+          - name: PORT
+            value: "4000"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          name: autohls
+          resources:
+            requests:
+              gpu.intel.com/i915: "1"
+            limits:
+              gpu.intel.com/i915: "1"
+          volumeMounts:
+            - mountPath: /source
+              name: autohls-source
+            - mountPath: /dest
+              name: autohls-dest
+      volumes:
+        - name: autohls-source
+          persistentVolumeClaim:
+            claimName: autohls-source
+        - name: autohls-dest
+          persistentVolumeClaim:
+            claimName: autohls-dest
+      restartPolicy: Always

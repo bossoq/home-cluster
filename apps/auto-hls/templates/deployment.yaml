@@ -29,6 +29,8 @@ spec:
             value: "/dest/"
           - name: PORT
             value: "4000"
+          - name: HOST
+            value: "https://vodstatus-test.picturo.us"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           name: autohls

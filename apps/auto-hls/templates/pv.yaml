@@ -26,6 +26,6 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    path: /mnt/disks/SlowPhatty
+    path: /mnt/disks/SlowPhatty/VOD
     server: 10.0.1.201
     readOnly: false

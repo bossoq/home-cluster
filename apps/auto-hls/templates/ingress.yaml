@@ -21,3 +21,10 @@ spec:
                 name: autohls
                 port:
                   number: 3000
+          - path: /socket
+            pathType: Prefix
+            backend:
+              service:
+                name: autohls
+                port:
+                  number: 4000

@@ -31,6 +31,8 @@ spec:
             value: "4000"
           - name: CORSHOST
             value: "https://vodstatus-test.picturo.us"
+          - name: SOCKET_URL
+            value: "https://vodstatus-test.picturo.us/socket"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           name: autohls

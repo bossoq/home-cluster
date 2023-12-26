@@ -10,4 +10,8 @@ spec:
       targetPort: 3000
       name: http-web
       protocol: TCP
+    - port: 4000
+      targetPort: 4000
+      name: http-socket
+      protocol: TCP
   type: ClusterIP

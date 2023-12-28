@@ -23,7 +23,7 @@ spec:
                   number: 8096
 ---
 apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
+kind: IngressRouteUDP
 metadata:
   name: jitsi-ingressroute
   namespace: argocd

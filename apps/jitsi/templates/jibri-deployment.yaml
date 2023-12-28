@@ -68,7 +68,7 @@ spec:
           - name: XMPP_RECORDER_DOMAIN
             value: recorder.meet.picturo.us
           - name: XMPP_SERVER
-            value: jitsi-prosody
+            value: jitsi-prosody.argocd.svc.cluster.local
           image: "{{ .Values.jibri.image.repository }}:{{ .Values.jibri.image.tag }}"
           imagePullPolicy: "{{ .Values.jibri.image.pullPolicy }}"
           name: jitsi-jibri

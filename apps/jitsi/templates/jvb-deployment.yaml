@@ -57,7 +57,7 @@ spec:
           - name: XMPP_PORT
             value: "5222"
           - name: XMPP_SERVER
-            value: jitsi-prosody
+            value: jitsi-prosody.argocd.svc.cluster.local
           image: "{{ .Values.jvb.image.repository }}:{{ .Values.jvb.image.tag }}"
           imagePullPolicy: "{{ .Values.jvb.image.pullPolicy }}"
           name: jitsi-jvb

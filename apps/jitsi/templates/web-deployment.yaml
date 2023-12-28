@@ -40,7 +40,7 @@ spec:
           - name: JICOFO_AUTH_USER
             value: focus
           - name: JVB_URL_BASE
-            value: http://jitsi-jvb:8080
+            value: http://jitsi-jvb.argocd.svc.cluster.local:8080
           - name: PUBLIC_URL
             value: https://meet.picturo.us
           - name: RESOLUTION
@@ -56,7 +56,7 @@ spec:
           - name: XMPP_AUTH_DOMAIN
             value: auth.meet.picturo.us
           - name: XMPP_BOSH_URL_BASE
-            value: http://jitsi-prosody:5280
+            value: http://jitsi-prosody.argocd.svc.cluster.local:5280
           - name: XMPP_DOMAIN
             value: meet.picturo.us
           - name: XMPP_GUEST_DOMAIN

@@ -14,8 +14,8 @@ spec:
       targetPort: 54443
       name: jvb-ws
       protocol: TCP
-    - port: 8080
-      targetPort: 8080
+    - port: 9090
+      targetPort: 9090
       name: http-jvb
       protocol: TCP
   type: ClusterIP

@@ -40,7 +40,7 @@ spec:
           - name: JICOFO_AUTH_USER
             value: focus
           - name: JVB_URL_BASE
-            value: http://jitsi-jvb.argocd.svc.cluster.local:8080
+            value: http://jitsi-jvb.argocd.svc.cluster.local:9090
           - name: PUBLIC_URL
             value: https://meet.picturo.us
           - name: RESOLUTION

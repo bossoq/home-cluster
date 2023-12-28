@@ -24,7 +24,7 @@ spec:
       containers:
         - env:
           - name: JVB_ADVERTISE_IPS
-            value: meet.picturo.us
+            value: 10.0.0.24,meet.picturo.us
           - name: JVB_AUTH_PASSWORD
             valueFrom:
               secretKeyRef:

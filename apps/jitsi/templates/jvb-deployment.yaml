@@ -67,8 +67,10 @@ spec:
               name: jitsi-jvb-config
           ports:
             - containerPort: 50000
+              hostPort: 50000
               protocol: UDP
             - containerPort: 54443
+              hostPort: 54443
               protocol: TCP
       volumes:
         - name: jitsi-jvb-config

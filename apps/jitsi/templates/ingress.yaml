@@ -21,3 +21,16 @@ spec:
                 name: jitsi-web
                 port:
                   number: 8096
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: jitsi-ingressroute
+  namespace: argocd
+spec:
+  entryPoints:
+    - dnsudp
+  routes:
+    - services:
+        - name: jitsi-jvb
+          port: 50000

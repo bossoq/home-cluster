@@ -65,13 +65,16 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: jitsi-jvb-config
-          # ports:
-          #   - containerPort: 50000
-          #     hostPort: 50000
-          #     protocol: UDP
-          #   - containerPort: 54443
-          #     hostPort: 54443
-          #     protocol: TCP
+          ports:
+            - containerPort: 50000
+              name: jvb-rtp
+              protocol: UDP
+            - containerPort: 54443
+              name: jvb-ws
+              protocol: TCP
+            - containerPort: 9090
+              name: http-jvb
+              protocol: TCP
       volumes:
         - name: jitsi-jvb-config
           persistentVolumeClaim:

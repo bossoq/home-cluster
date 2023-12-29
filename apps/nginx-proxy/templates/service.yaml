@@ -8,11 +8,14 @@ spec:
   ports:
     - port: 8080
       targetPort: 8080
+      name: fileserver
       protocol: TCP
     - port: 8081
       targetPort: 8081
+      name: homeassistant
       protocol: TCP
     - port: 8082
       targetPort: 8082
+      name: supapanya-hass
       protocol: TCP
   type: ClusterIP

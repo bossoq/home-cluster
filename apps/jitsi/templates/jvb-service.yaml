@@ -8,10 +8,12 @@ spec:
   ports:
     - port: 50000
       targetPort: 50000
+      nodePort: 50000
       name: jvb-rtp
       protocol: UDP
     - port: 54443
       targetPort: 54443
+      nodePort: 54443
       name: jvb-ws
       protocol: TCP
     - port: 9090

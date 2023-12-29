@@ -67,11 +67,11 @@ spec:
               name: jitsi-jvb-config
           ports:
             - containerPort: 50000
-              hostPort: 50000
+              # hostPort: 50000
               name: jvb-rtp
               protocol: UDP
             - containerPort: 54443
-              hostPort: 54443
+              # hostPort: 54443
               name: jvb-ws
               protocol: TCP
             - containerPort: 9090

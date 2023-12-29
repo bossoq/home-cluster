@@ -36,7 +36,7 @@ spec:
               service:
                 name: nginx-service
                 port:
-                  number: 8080
+                  number: 8081
     - host: supapanyahass-test.picturo.us
       http:
         paths:
@@ -46,4 +46,4 @@ spec:
               service:
                 name: nginx-service
                 port:
-                  number: 8080
+                  number: 8082

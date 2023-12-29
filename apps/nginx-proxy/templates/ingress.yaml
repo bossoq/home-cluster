@@ -14,7 +14,7 @@ spec:
       hosts:
         - homeassistant-test.picturo.us
   rules:
-    - host: jellyfin.picturo.us
+    - host: fileserver.picturo.us
       http:
         paths:
           - path: /

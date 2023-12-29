@@ -6,6 +6,20 @@ spec:
   selector:
     app: jitsi-jvb
   ports:
+    - port: 9090
+      targetPort: 9090
+      name: http-jvb
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jitsi-jvb-nodeport
+spec:
+  selector:
+    app: jitsi-jvb
+  ports:
     - port: 50000
       targetPort: 50000
       nodePort: 50000
@@ -16,8 +30,4 @@ spec:
       nodePort: 54443
       name: jvb-ws
       protocol: TCP
-    - port: 9090
-      targetPort: 9090
-      name: http-jvb
-      protocol: TCP
-  type: ClusterIP
+  type: NodePort

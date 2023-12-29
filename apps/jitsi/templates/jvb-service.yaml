@@ -20,14 +20,14 @@ spec:
   selector:
     app: jitsi-jvb
   ports:
-    - port: 50000
-      targetPort: 50000
-      nodePort: 50000
+    - port: 30000
+      targetPort: 30000
+      nodePort: 30000
       name: jvb-rtp
       protocol: UDP
-    - port: 54443
-      targetPort: 54443
-      nodePort: 54443
+    - port: 32443
+      targetPort: 32443
+      nodePort: 32443
       name: jvb-ws
       protocol: TCP
   type: NodePort

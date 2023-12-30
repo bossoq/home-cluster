@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wedding-gallery-ingress
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  tls:
+    - secretName: wedding-gallery-tls
+      hosts:
+        - wedding-gallery-test.picturo.us
+  rules:
+    - host: wedding-gallery-test.picturo.us
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: wedding-gallery-backend
+                port:
+                  number: 1080

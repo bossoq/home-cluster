@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wedding-gallery-backend
+  labels:
+    app: wedding-gallery-backend
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: wedding-gallery-backend
+  template:
+    metadata:
+      labels:
+        app: wedding-gallery-backend
+    spec:
+      containers:
+        - env:
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                key: database-url
+                name: wedding-gallery-secret
+          - name: DIRECTORY
+            value: ./files
+          - name: PORT
+            value: "1080"
+          image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          name: wedding-gallery-backend
+          resources: {}
+          stdin: true
+          tty: true
+          volumeMounts:
+            - mountPath: /app/files
+              name: wedding-gallery-store
+      volumes:
+        - name: wedding-gallery-store
+          persistentVolumeClaim:
+            claimName: wedding-gallery-store
+      restartPolicy: Always

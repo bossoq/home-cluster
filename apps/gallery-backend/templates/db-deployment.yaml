@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wedding-gallery-db
+  labels:
+    app: wedding-gallery-db
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: wedding-gallery-db
+  template:
+    metadata:
+      labels:
+        app: wedding-gallery-db
+    spec:
+      containers:
+        - env:
+          - name: POSTGRES_USER
+            value: bossoq
+          - name: POSTGRES_DB
+            value: fileStore
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: postgres-password
+                name: wedding-gallery-secret
+          image: "{{ .Values.db.image.repository }}:{{ .Values.db.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          name: wedding-gallery-db
+          resources: {}
+          stdin: true
+          tty: true
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: wedding-gallery-db
+      volumes:
+        - name: wedding-gallery-db
+          persistentVolumeClaim:
+            claimName: wedding-gallery-db
+      restartPolicy: Always

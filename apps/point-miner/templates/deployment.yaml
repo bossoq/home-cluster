@@ -50,7 +50,7 @@ spec:
           persistentVolumeClaim:
             claimName: miner-logs
         - name: miner-run
-          persistentVolumeClaim:
-            claimName: miner-run
-            readOnly: true
+          configMap:
+            name: miner-run
+            defaultMode: 0744
       restartPolicy: Always

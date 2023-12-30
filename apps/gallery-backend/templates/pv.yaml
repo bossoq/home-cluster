@@ -17,7 +17,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: wedding-gallery-cache
+  name: wedding-gallery-caches
 spec:
   storageClassName: ""
   capacity:

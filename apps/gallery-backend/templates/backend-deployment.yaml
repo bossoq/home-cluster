@@ -30,6 +30,8 @@ spec:
                 name: wedding-gallery-secret
           - name: DIRECTORY
             value: ./files
+          - name: HOST
+            value: "0.0.0.0"
           - name: PORT
             value: "1080"
           image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
@@ -41,8 +43,13 @@ spec:
           volumeMounts:
             - mountPath: /app/files
               name: wedding-gallery-store
+            - mountPath: /app/caches
+              name: wedding-gallery-cache
       volumes:
         - name: wedding-gallery-store
           persistentVolumeClaim:
             claimName: wedding-gallery-store
+        - name: wedding-gallery-cache
+          persistentVolumeClaim:
+            claimName: wedding-gallery-cache
       restartPolicy: Always

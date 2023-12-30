@@ -48,7 +48,7 @@ spec:
   storageClassName: ""
   volumeName: miner-run
   accessModes:
-    - ReadWriteMany
+    - ReadOnlyMany
   volumeMode: Filesystem
   resources:
     requests:

@@ -73,7 +73,7 @@ spec:
   capacity:
     storage: 10Mi
   accessModes:
-    - ReadWriteMany
+    - ReadOnlyMany
   persistentVolumeReclaimPolicy: Retain
   local:
     path: /mnt/channelpointminer/run.py

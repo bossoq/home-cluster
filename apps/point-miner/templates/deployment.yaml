@@ -37,6 +37,7 @@ spec:
             - mountPath: /usr/src/app/logs
               name: miner-logs
             - mountPath: /usr/src/app/run.py
+              subPath: run.py
               name: miner-run
       volumes:
         - name: miner-analytics

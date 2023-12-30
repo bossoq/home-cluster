@@ -49,7 +49,7 @@ spec:
         - name: wedding-gallery-store
           persistentVolumeClaim:
             claimName: wedding-gallery-store
-        - name: wedding-gallery-cache
+        - name: wedding-gallery-caches
           persistentVolumeClaim:
             claimName: wedding-gallery-caches
       restartPolicy: Always

@@ -44,12 +44,12 @@ spec:
             - mountPath: /app/files
               name: wedding-gallery-store
             - mountPath: /app/caches
-              name: wedding-gallery-cache
+              name: wedding-gallery-caches
       volumes:
         - name: wedding-gallery-store
           persistentVolumeClaim:
             claimName: wedding-gallery-store
         - name: wedding-gallery-cache
           persistentVolumeClaim:
-            claimName: wedding-gallery-cache
+            claimName: wedding-gallery-caches
       restartPolicy: Always

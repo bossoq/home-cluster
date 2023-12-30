@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: point-miner
+spec:
+  selector:
+    app: point-miner
+  ports:
+    - port: 5000
+      targetPort: 5000
+      name: http-web
+      protocol: TCP
+  type: ClusterIP

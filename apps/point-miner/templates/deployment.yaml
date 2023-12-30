@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: point-miner
+  labels:
+    app: point-miner
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: point-miner
+  template:
+    metadata:
+      labels:
+        app: point-miner
+    spec:
+      containers:
+        - env:
+          - name: TERM
+            value: xterm-256color
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          name: point-miner
+          resources: {}
+          stdin: true
+          tty: true
+          volumeMounts:
+            - mountPath: /usr/src/app/analytics
+              name: miner-analytics
+            - mountPath: /usr/src/app/cookies
+              name: miner-cookies
+            - mountPath: /usr/src/app/logs
+              name: miner-logs
+            - mountPath: /usr/src/app/run.py
+              name: miner-run
+      volumes:
+        - name: miner-analytics
+          persistentVolumeClaim:
+            claimName: miner-analytics
+        - name: miner-cookies
+          persistentVolumeClaim:
+            claimName: miner-cookies
+        - name: miner-logs
+          persistentVolumeClaim:
+            claimName: miner-logs
+        - name: miner-run
+          persistentVolumeClaim:
+            claimName: miner-run
+            readOnly: true
+      restartPolicy: Always

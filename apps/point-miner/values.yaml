@@ -1,0 +1,4 @@
+image:
+  repository: rdavidoff/twitch-channel-points-miner-v2
+  tag: 1.9.1
+  pullPolicy: IfNotPresent

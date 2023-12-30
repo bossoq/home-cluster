@@ -23,6 +23,21 @@ spec:
         - env:
           - name: TERM
             value: xterm-256color
+          - name: TELEGRAM_CHATID
+            valueFrom:
+              secretKeyRef:
+                key: telegram-chatid
+                name: point-miner-secret
+          - name: TELEGRAM_TOKEN
+            valueFrom:
+              secretKeyRef:
+                key: telegram-token
+                name: point-miner-secret
+          - name: DISCORD_WEBHOOK
+            valueFrom:
+              secretKeyRef:
+                key: discord-webhook
+                name: point-miner-secret
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           name: point-miner

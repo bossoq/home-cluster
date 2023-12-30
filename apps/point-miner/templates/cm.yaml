@@ -7,6 +7,7 @@ data:
     # -*- coding: utf-8 -*-
 
     import logging
+    import os
     from colorama import Fore
     from TwitchChannelPointsMiner import TwitchChannelPointsMiner
     from TwitchChannelPointsMiner.logger import LoggerSettings, ColorPalette
@@ -44,16 +45,16 @@ data:
                 BET_wiN=Fore.MAGENTA                # Color allowed are: [BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET].
             ),
             telegram=Telegram(                                                          # You can omit or set to None if you don't want to receive updates on Telegram
-                chat_id=-506452846,                                                     # Chat ID to send messages @getmyid_bot
-                token="1488799354:AAHIsIdUHnr9SXDZJWfbOfn1oH4dDFsWaWs",                 # Telegram API token @BotFather
+                chat_id=os.environ.get('TELEGRAM_CHATID', ''),                          # Chat ID to send messages @getmyid_bot
+                token=os.environ.get('TELEGRAM_TOKEN', ''),                             # Telegram API token @BotFather
                 events=[Events.STREAMER_ONLINE, Events.STREAMER_OFFLINE,
                         Events.BET_LOSE, Events.CHAT_MENTION],                          # Only these events will be sent to the chat
                 disable_notification=True,                                              # Revoke the notification (sound/vibration)
             ),
             discord=Discord(
-                webhook_api="https://discord.com/api/webhooks/1000690446433001509/Ayyv8SVW9uKDOrcHfPBNc0TGQL07Z3_SIwn1oYE0O9GOHwVLsLjxBuiVt_LA2F_hHbg2",  # Discord Webhook URL
+                webhook_api=os.environ.get('DISCORD_WEBHOOK', ''),                      # Discord Webhook URL
                 events=[Events.STREAMER_ONLINE, Events.STREAMER_OFFLINE,
-                        Events.BET_LOSE, Events.CHAT_MENTION],                                  # Only these events will be sent to the chat
+                        Events.BET_LOSE, Events.CHAT_MENTION],                          # Only these events will be sent to the chat
             )
         ),
         streamer_settings=StreamerSettings(

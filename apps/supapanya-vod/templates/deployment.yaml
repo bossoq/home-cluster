@@ -21,7 +21,7 @@ spec:
       containers:
         - image: nginx:alpine
           imagePullPolicy: IfNotPresent
-          name: nginx-alpine
+          name: nginx-vod
           resources: {}
           volumeMounts:
             - mountPath: /etc/nginx/conf.d/

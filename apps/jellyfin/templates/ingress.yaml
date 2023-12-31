@@ -9,9 +9,9 @@ spec:
   tls:
     - secretName: jellyfin-tls
       hosts:
-        - jellyfin.picturo.us
+        - plexserver.picturo.us
   rules:
-    - host: jellyfin.picturo.us
+    - host: plexserver.picturo.us
       http:
         paths:
           - path: /

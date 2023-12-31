@@ -85,7 +85,7 @@ metadata:
 data:
   config.yaml: |
     # Name of the tunnel you want to run
-    tunnel: jellyfin-test
+    tunnel: jellyfin
     credentials-file: /etc/cloudflared/creds/credentials.json
     # Serves the metrics server under /metrics and the readiness server under /ready
     metrics: 0.0.0.0:2000
@@ -102,8 +102,8 @@ data:
     # E.g. `cloudflared tunnel route dns example-tunnel tunnel.example.com`.
     ingress:
       # The first rule proxies traffic to the nginx sample Service defined in app.yaml
-      - hostname: jellyfin.picturo.us
-        service: https://jellyfin.picturo.us
+      - hostname: plexserver.picturo.us
+        service: http://jellyfin-tcp.argocd.svc.cluster.local:8096
 
       # This rule sends traffic to the built-in hello-world HTTP server. This can help debug connectivity
       # issues. If hello.example.com resolves and tunnel.example.com does not, then the problem is

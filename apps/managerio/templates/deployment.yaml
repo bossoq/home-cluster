@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: managerio
+  labels:
+    app: managerio
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: managerio
+  template:
+    metadata:
+      labels:
+        app: managerio
+    spec:
+      imagePullSecrets:
+        - name: dockerconfigjson-ghcr
+      containers:
+        - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          name: managerio
+          resources: {}
+          stdin: true
+          tty: true
+          volumeMounts:
+            - mountPath: /data
+              name: managerio-data
+      volumes:
+        - name: managerio-data
+          persistentVolumeClaim:
+            claimName: managerio-data
+      restartPolicy: Always

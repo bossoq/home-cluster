@@ -20,23 +20,23 @@ spec:
   selector:
     app: rutorrent
   ports:
-    - port: 6881
-      targetPort: 6881
+    - port: 31881
+      targetPort: 31881
       nodePort: 31881
       name: rt-dht
       protocol: UDP
-    - port: 8000
-      targetPort: 8000
+    - port: 30800
+      targetPort: 30800
       nodePort: 30800
       name: xmlrpc
       protocol: TCP
-    - port: 9000
-      targetPort: 9000
+    - port: 30900
+      targetPort: 30900
       nodePort: 30900
       name: webdav
       protocol: TCP
-    - port: 50000
-      targetPort: 50000
+    - port: 31500
+      targetPort: 31500
       nodePort: 31500
       name: rt-inc
       protocol: TCP

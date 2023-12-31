@@ -27,6 +27,14 @@ spec:
             value: "99"
           - name: PGID
             value: "100"
+          - name: RT_DHT_PORT
+            value: "31881"
+          - name: RT_INC_PORT
+            value: "31500"
+          - name: XMLRPC_PORT
+            value: "30800"
+          - name: WEBDAV_PORT
+            value: "30900"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           name: rutorrent

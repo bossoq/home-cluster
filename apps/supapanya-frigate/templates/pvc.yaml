@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: supapanya-frigate-config
+spec:
+  storageClassName: ""
+  volumeName: supapanya-frigate-config
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 10Mi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: supapanya-frigate-data
+spec:
+  storageClassName: ""
+  volumeName: supapanya-frigate-data
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 2Ti

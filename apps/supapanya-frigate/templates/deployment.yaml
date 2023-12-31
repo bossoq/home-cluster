@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: supapanya-frigate
+  labels:
+    app: supapanya-frigate
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: supapanya-frigate
+  template:
+    metadata:
+      labels:
+        app: supapanya-frigate
+    spec:
+      containers:
+        - env:
+          - name: TZ
+            value: Asia/Bangkok
+          - name: FRIGATE_RTSP_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: frigate-rtsp-password
+                name: supapanya-frigate-secret
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          name: frigate
+          resources:
+            requests:
+              gpu.intel.com/i915: "1"
+            limits:
+              gpu.intel.com/i915: "1"
+          volumeMounts:
+            - mountPath: /config
+              name: supapanya-frigate-config
+            - mountPath: /media/frigate
+              name: supapanya-frigate-data
+            - mountPath: /dev/shm
+              name: dshm
+            - mountPath: /tmp/cache
+              name: cache
+      volumes:
+        - name: supapanya-frigate-config
+          persistentVolumeClaim:
+            claimName: supapanya-frigate-config
+        - name: supapanya-frigate-data
+          persistentVolumeClaim:
+            claimName: supapanya-frigate-data
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 1Gi
+        - name: cache
+          emptyDir:
+            medium: Memory
+            sizeLimit: 1Gi
+      restartPolicy: Always

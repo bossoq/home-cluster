@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: home-frigate
+  labels:
+    app: home-frigate
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: home-frigate
+  template:
+    metadata:
+      labels:
+        app: home-frigate
+    spec:
+      containers:
+        - env:
+          - name: TZ
+            value: Asia/Bangkok
+          - name: FRIGATE_RTSP_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: frigate-rtsp-password
+                name: home-frigate-secret
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          name: frigate
+          resources:
+            requests:
+              gpu.intel.com/i915: "1"
+            limits:
+              gpu.intel.com/i915: "1"
+          volumeMounts:
+            - mountPath: /config
+              name: home-frigate-config
+            - mountPath: /media/frigate
+              name: home-frigate-data
+            - mountPath: /dev/shm
+              name: dshm
+            - mountPath: /tmp/cache
+              name: cache
+      volumes:
+        - name: home-frigate-config
+          persistentVolumeClaim:
+            claimName: home-frigate-config
+        - name: home-frigate-data
+          persistentVolumeClaim:
+            claimName: home-frigate-data
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 1Gi
+        - name: cache
+          emptyDir:
+            medium: Memory
+            sizeLimit: 1Gi
+      restartPolicy: Always

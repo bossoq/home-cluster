@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: streaming-tools-db
+  labels:
+    app: streaming-tools-db
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: streaming-tools-db
+  template:
+    metadata:
+      labels:
+        app: streaming-tools-db
+    spec:
+      containers:
+        - env:
+          - name: POSTGRES_USER
+            value: bossoq
+          - name: POSTGRES_DB
+            value: userInfo
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: postgres-password
+                name: streaming-tools-secret
+          image: "{{ .Values.db.image.repository }}:{{ .Values.db.image.tag }}"
+          imagePullPolicy: "{{ .Values.db.image.pullPolicy }}"
+          name: streaming-tools-db
+          resources: {}
+          stdin: true
+          tty: true
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: streaming-tools-db
+      volumes:
+        - name: streaming-tools-db
+          persistentVolumeClaim:
+            claimName: streaming-tools-db
+      restartPolicy: Always

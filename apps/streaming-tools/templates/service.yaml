@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: streaming-tools-backend
+spec:
+  selector:
+    app: streaming-tools-backend
+  ports:
+    - port: 9876
+      targetPort: 9876
+      name: http-api
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: streaming-tools-db
+spec:
+  selector:
+    app: streaming-tools-db
+  ports:
+    - port: 5432
+      targetPort: 5432
+      name: postgres
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: streaming-tools-redis
+spec:
+  selector:
+    app: streaming-tools-redis
+  ports:
+    - port: 6379
+      targetPort: 6379
+      name: redis
+      protocol: TCP
+  type: ClusterIP

@@ -1,0 +1,15 @@
+backend:
+  image:
+    repository: ghcr.io/bossoq/streaming-tools
+    tag: 1.0.0
+    pullPolicy: IfNotPresent
+db:
+  image:
+    repository: postgres
+    tag: 14
+    pullPolicy: IfNotPresent
+redis:
+  image:
+    repository: redis
+    tag: 6.2
+    pullPolicy: IfNotPresent

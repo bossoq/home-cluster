@@ -1,0 +1,171 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: streaming-tools-backend
+  labels:
+    app: streaming-tools-backend
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: streaming-tools-backend
+  template:
+    metadata:
+      labels:
+        app: streaming-tools-backend
+    spec:
+      imagePullSecrets:
+        - name: dockerconfigjson-ghcr
+      containers:
+        - env:
+          - name: ABLY_KEY
+            valueFrom:
+              secretKeyRef:
+                key: ably-key
+                name: streaming-tools-secret
+          - name: COIN_FLIP_RATE
+            valueFrom:
+              secretKeyRef:
+                key: coin-flip-rate
+                name: streaming-tools-secret
+          - name: COIN_FLIP_THRESHOLD
+            valueFrom:
+              secretKeyRef:
+                key: coin-flip-threshold
+                name: streaming-tools-secret
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                key: database-url
+                name: streaming-tools-secret
+          - name: DEV_GUILD_ID
+            valueFrom:
+              secretKeyRef:
+                key: dev-guild-id
+                name: streaming-tools-secret
+          - name: DISCORD_ANNOUNCE_CHANNEL
+            valueFrom:
+              secretKeyRef:
+                key: discord-announce-channel
+                name: streaming-tools-secret
+          - name: DISCORD_BOTLOG_CHANNEL
+            valueFrom:
+              secretKeyRef:
+                key: discord-botlog-channel
+                name: streaming-tools-secret
+          - name: DISCORD_CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                key: discord-client-id
+                name: streaming-tools-secret
+          - name: DISCORD_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: discord-client-secret
+                name: streaming-tools-secret
+          - name: DISCORD_LINK
+            valueFrom:
+              secretKeyRef:
+                key: discord-link
+                name: streaming-tools-secret
+          - name: DISCORD_TOKEN
+            valueFrom:
+              secretKeyRef:
+                key: discord-token
+                name: streaming-tools-secret
+          - name: EVENT_SUB_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: event-sub-secret
+                name: streaming-tools-secret
+          - name: FACEBOOK_LINK
+            valueFrom:
+              secretKeyRef:
+                key: facebook-link
+                name: streaming-tools-secret
+          - name: INSTAGRAM_LINK
+            valueFrom:
+              secretKeyRef:
+                key: instagram-link
+                name: streaming-tools-secret
+          - name: NODE_ENV
+            value: production
+          - name: PORT
+            value: "9876"
+          - name: REDIS_URL
+            valueFrom:
+              secretKeyRef:
+                key: redis-url
+                name: streaming-tools-secret
+          - name: TIPME_LINK
+            valueFrom:
+              secretKeyRef:
+                key: tipme-link
+                name: streaming-tools-secret
+          - name: TWITCH_ACCESS_TOKEN
+            valueFrom:
+              secretKeyRef:
+                key: twitch-access-token
+                name: streaming-tools-secret
+          - name: TWITCH_BOT_NICK
+            valueFrom:
+              secretKeyRef:
+                key: twitch-bot-nick
+                name: streaming-tools-secret
+          - name: TWITCH_CALLBACK_URL
+            valueFrom:
+              secretKeyRef:
+                key: twitch-callback-url
+                name: streaming-tools-secret
+          - name: TWITCH_CHANNEL_NAME
+            valueFrom:
+              secretKeyRef:
+                key: twitch-channel-name
+                name: streaming-tools-secret
+          - name: TWITCH_CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                key: twitch-client-id
+                name: streaming-tools-secret
+          - name: TWITCH_HTTP_CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                key: twitch-http-client-id
+                name: streaming-tools-secret
+          - name: TWITCH_HTTP_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: twitch-http-client-secret
+                name: streaming-tools-secret
+          - name: TWITCH_USERID
+            valueFrom:
+              secretKeyRef:
+                key: twitch-userid
+                name: streaming-tools-secret
+          - name: YOUTUBE_CALLBACK_URL
+            valueFrom:
+              secretKeyRef:
+                key: youtube-callback-url
+                name: streaming-tools-secret
+          - name: YOUTUBE_CHANNEL_ID
+            valueFrom:
+              secretKeyRef:
+                key: youtube-channel-id
+                name: streaming-tools-secret
+          - name: YOUTUBE_LINK
+            valueFrom:
+              secretKeyRef:
+                key: youtube-link
+                name: streaming-tools-secret
+          image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
+          imagePullPolicy: "{{ .Values.backend.image.pullPolicy }}"
+          name: streaming-tools-backend
+          resources: {}
+          stdin: true
+          tty: true
+      restartPolicy: Always

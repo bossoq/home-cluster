@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: streaming-tools-redis
+  labels:
+    app: streaming-tools-redis
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: streaming-tools-redis
+  template:
+    metadata:
+      labels:
+        app: streaming-tools-redis
+    spec:
+      containers:
+        - image: "{{ .Values.redis.image.repository }}:{{ .Values.redis.image.tag }}"
+          imagePullPolicy: "{{ .Values.redis.image.pullPolicy }}"
+          name: streaming-tools-redis
+          resources: {}
+          stdin: true
+          tty: true
+      restartPolicy: Always

@@ -24,9 +24,9 @@ spec:
           - name: TZ
             value: Asia/Bangkok
           - name: PUID
-            value: 99
+            value: "99"
           - name: PGID
-            value: 100
+            value: "100"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           name: rutorrent

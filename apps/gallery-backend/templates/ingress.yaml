@@ -9,9 +9,9 @@ spec:
   tls:
     - secretName: wedding-gallery-tls
       hosts:
-        - wedding-gallery-test.picturo.us
+        - wedding-gallery.picturo.us
   rules:
-    - host: wedding-gallery-test.picturo.us
+    - host: wedding-gallery.picturo.us
       http:
         paths:
           - path: /

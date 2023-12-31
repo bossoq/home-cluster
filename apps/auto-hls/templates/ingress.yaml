@@ -9,9 +9,9 @@ spec:
   tls:
     - secretName: autohls-tls
       hosts:
-        - vodstatus-test.picturo.us
+        - vodstatus.picturo.us
   rules:
-    - host: vodstatus-test.picturo.us
+    - host: vodstatus.picturo.us
       http:
         paths:
           - path: /socket

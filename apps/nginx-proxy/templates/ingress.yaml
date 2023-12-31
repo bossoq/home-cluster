@@ -12,10 +12,10 @@ spec:
         - fileserver.picturo.us
     - secretName: nginx-homeassistant-tls
       hosts:
-        - homeassistant-test.picturo.us
+        - homeassistant.picturo.us
     - secretName: nginx-supapanyahass-tls
       hosts:
-        - supapanyahass-test.picturo.us
+        - supapanyahass.picturo.us
   rules:
     - host: fileserver.picturo.us
       http:
@@ -27,7 +27,7 @@ spec:
                 name: nginx-service
                 port:
                   number: 8080
-    - host: homeassistant-test.picturo.us
+    - host: homeassistant.picturo.us
       http:
         paths:
           - path: /
@@ -37,7 +37,7 @@ spec:
                 name: nginx-service
                 port:
                   number: 8081
-    - host: supapanyahass-test.picturo.us
+    - host: supapanyahass.picturo.us
       http:
         paths:
           - path: /

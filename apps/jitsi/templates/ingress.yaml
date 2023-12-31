@@ -9,9 +9,9 @@ spec:
   tls:
     - secretName: jitsi-tls
       hosts:
-        - meet.picturo.us
+        - meet.supapanya.com
   rules:
-    - host: meet.picturo.us
+    - host: meet.supapanya.com
       http:
         paths:
           - path: /

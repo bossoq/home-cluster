@@ -74,27 +74,27 @@ spec:
                 key: jwt-app-secret
                 name: jitsi-secret
           - name: PUBLIC_URL
-            value: https://meet.picturo.us
+            value: https://meet.supapanya.com
           - name: TZ
             value: Asia/Bangkok
           - name: XMPP_AUTH_DOMAIN
-            value: auth.meet.picturo.us
+            value: auth.meet.supapanya.com
           - name: XMPP_DOMAIN
-            value: meet.picturo.us
+            value: meet.supapanya.com
           - name: XMPP_GUEST_DOMAIN
-            value: guest.meet.picturo.us
+            value: guest.meet.supapanya.com
           - name: XMPP_INTERNAL_MUC_DOMAIN
-            value: internal-muc.meet.picturo.us
+            value: internal-muc.meet.supapanya.com
           - name: XMPP_INTERNAL_MUC_MODULES
           - name: XMPP_MODULES
             value: token_affiliation,token_owner_party,token_verification,muc_census
           - name: XMPP_MUC_DOMAIN
-            value: muc.meet.picturo.us
+            value: muc.meet.supapanya.com
           - name: XMPP_MUC_MODULES
           - name: XMPP_PORT
             value: "5222"
           - name: XMPP_RECORDER_DOMAIN
-            value: recorder.meet.picturo.us
+            value: recorder.meet.supapanya.com
           image: "{{ .Values.prosody.image.repository }}:{{ .Values.prosody.image.tag }}"
           imagePullPolicy: "{{ .Values.prosody.image.pullPolicy }}"
           name: jitsi-prosody

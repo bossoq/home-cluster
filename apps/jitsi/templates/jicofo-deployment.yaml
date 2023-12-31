@@ -52,17 +52,17 @@ spec:
           - name: TZ
             value: Asia/Bangkok
           - name: XMPP_AUTH_DOMAIN
-            value: auth.meet.picturo.us
+            value: auth.meet.supapanya.com
           - name: XMPP_DOMAIN
-            value: meet.picturo.us
+            value: meet.supapanya.com
           - name: XMPP_INTERNAL_MUC_DOMAIN
-            value: internal-muc.meet.picturo.us
+            value: internal-muc.meet.supapanya.com
           - name: XMPP_MUC_DOMAIN
-            value: muc.meet.picturo.us
+            value: muc.meet.supapanya.com
           - name: XMPP_PORT
             value: "5222"
           - name: XMPP_RECORDER_DOMAIN
-            value: recorder.meet.picturo.us
+            value: recorder.meet.supapanya.com
           - name: XMPP_SERVER
             value: jitsi-prosody.argocd.svc.cluster.local
           image: "{{ .Values.jicofo.image.repository }}:{{ .Values.jicofo.image.tag }}"

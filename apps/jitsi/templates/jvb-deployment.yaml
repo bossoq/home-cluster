@@ -24,7 +24,7 @@ spec:
       containers:
         - env:
           - name: JVB_ADVERTISE_IPS
-            value: 10.0.0.24,meet.picturo.us
+            value: meet.supapanya.com
           - name: JVB_AUTH_PASSWORD
             valueFrom:
               secretKeyRef:
@@ -45,15 +45,15 @@ spec:
           - name: JVB_TCP_PORT
             value: "32443"
           - name: PUBLIC_URL
-            value: https://meet.picturo.us
+            value: https://meet.supapanya.com
           - name: SENTRY_DSN
             value: '"0"'
           - name: TZ
             value: Asia/Bangkok
           - name: XMPP_AUTH_DOMAIN
-            value: auth.meet.picturo.us
+            value: auth.meet.supapanya.com
           - name: XMPP_INTERNAL_MUC_DOMAIN
-            value: internal-muc.meet.picturo.us
+            value: internal-muc.meet.supapanya.com
           - name: XMPP_PORT
             value: "5222"
           - name: XMPP_SERVER

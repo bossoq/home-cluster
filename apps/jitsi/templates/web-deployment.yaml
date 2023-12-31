@@ -42,7 +42,7 @@ spec:
           - name: JVB_URL_BASE
             value: http://jitsi-jvb.argocd.svc.cluster.local:9090
           - name: PUBLIC_URL
-            value: https://meet.picturo.us
+            value: https://meet.supapanya.com
           - name: RESOLUTION
             value: "1080"
           - name: RESOLUTION_MIN
@@ -54,19 +54,19 @@ spec:
           - name: TZ
             value: Asia/Bangkok
           - name: XMPP_AUTH_DOMAIN
-            value: auth.meet.picturo.us
+            value: auth.meet.supapanya.com
           - name: XMPP_BOSH_URL_BASE
             value: http://jitsi-prosody.argocd.svc.cluster.local:5280
           - name: XMPP_DOMAIN
-            value: meet.picturo.us
+            value: meet.supapanya.com
           - name: XMPP_GUEST_DOMAIN
-            value: guest.meet.picturo.us
+            value: guest.meet.supapanya.com
           - name: XMPP_MUC_DOMAIN
-            value: muc.meet.picturo.us
+            value: muc.meet.supapanya.com
           - name: XMPP_PORT
             value: "5222"
           - name: XMPP_RECORDER_DOMAIN
-            value: recorder.meet.picturo.us
+            value: recorder.meet.supapanya.com
           image: "{{ .Values.web.image.repository }}:{{ .Values.web.image.tag }}"
           imagePullPolicy: "{{ .Values.web.image.pullPolicy }}"
           name: jitsi-web

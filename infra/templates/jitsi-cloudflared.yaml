@@ -16,6 +16,11 @@ spec:
     matchLabels:
       app: jitsi-cloudflared
   replicas: 2 # You could also consider elastic scaling for this deployment
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
   template:
     metadata:
       labels:

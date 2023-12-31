@@ -38,6 +38,6 @@ spec:
     - port: 50000
       targetPort: 50000
       nodePort: 31500
-      name: webdav
+      name: rt-inc
       protocol: TCP
   type: NodePort

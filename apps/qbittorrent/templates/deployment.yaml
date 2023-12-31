@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rutorrent
+  name: qbittorrent
   labels:
-    app: rutorrent
+    app: qbittorrent
 spec:
   replicas: 1
   strategy:
@@ -13,7 +13,7 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: rutorrent
+      app: qbittorrent
   template:
     metadata:
       labels:

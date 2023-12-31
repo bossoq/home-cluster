@@ -9,9 +9,9 @@ spec:
   tls:
     - secretName: tosalim-api-tls
       hosts:
-        - tosalimapi-test.picturo.us
+        - tosalimapi.picturo.us
   rules:
-    - host: tosalimapi-test.picturo.us
+    - host: tosalimapi.picturo.us
       http:
         paths:
           - path: /

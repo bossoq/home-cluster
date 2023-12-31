@@ -9,9 +9,9 @@ spec:
   tls:
     - secretName: siewgenerator-api-tls
       hosts:
-        - siewapi-test.picturo.us
+        - siewapi.picturo.us
   rules:
-    - host: siewapi-test.picturo.us
+    - host: siewapi.picturo.us
       http:
         paths:
           - path: /

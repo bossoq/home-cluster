@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ttb-receipt-backend
+spec:
+  selector:
+    app: ttb-receipt-backend
+  ports:
+    - port: 3000
+      targetPort: 3000
+      name: http
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ttb-receipt-db
+spec:
+  selector:
+    app: ttb-receipt-db
+  ports:
+    - port: 5432
+      targetPort: 5432
+      name: postgres
+      protocol: TCP
+  type: ClusterIP

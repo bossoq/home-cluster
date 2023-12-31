@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ttb-receipt-backend
+  labels:
+    app: ttb-receipt-backend
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: ttb-receipt-backend
+  template:
+    metadata:
+      labels:
+        app: ttb-receipt-backend
+    spec:
+      imagePullSecrets:
+        - name: dockerconfigjson-ghcr
+      containers:
+        - env:
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                key: database-url
+                name: ttb-receipt-secret
+          - name: NODE_ENV
+            value: production
+          - name: PORT
+            value: "3000"
+          image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
+          imagePullPolicy: "{{ .Values.backend.image.pullPolicy }}"
+          name: ttb-receipt-backend
+          resources: {}
+          stdin: true
+          tty: true
+      restartPolicy: Always

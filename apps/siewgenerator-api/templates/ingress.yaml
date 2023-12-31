@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: siewgenerator-api-ingress
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  tls:
+    - secretName: siewgenerator-api-tls
+      hosts:
+        - siewapi-test.picturo.us
+  rules:
+    - host: siewapi-test.picturo.us
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: siewgenerator-api
+                port:
+                  number: 5000

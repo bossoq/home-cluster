@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: siewgenerator-api
+  labels:
+    app: siewgenerator-api
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: siewgenerator-api
+  template:
+    metadata:
+      labels:
+        app: siewgenerator-api
+    spec:
+      imagePullSecrets:
+        - name: dockerconfigjson-ghcr
+      containers:
+        - env:
+          - name: TOKEN
+            valueFrom:
+              secretKeyRef:
+                key: token
+                name: siewgenerator-api-secret
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          name: siewgenerator-api
+          resources: {}
+          stdin: true
+          tty: true
+      restartPolicy: Always

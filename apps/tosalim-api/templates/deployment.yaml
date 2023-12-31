@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tosalim-api
+  labels:
+    app: tosalim-api
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: tosalim-api
+  template:
+    metadata:
+      labels:
+        app: tosalim-api
+    spec:
+      imagePullSecrets:
+        - name: dockerconfigjson-ghcr
+      containers:
+        - env:
+          - name: TOKEN
+            valueFrom:
+              secretKeyRef:
+                key: token
+                name: tosalim-api-secret
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          name: tosalim-api
+          resources: {}
+          stdin: true
+          tty: true
+      restartPolicy: Always

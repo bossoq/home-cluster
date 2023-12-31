@@ -1,13 +1,13 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: rutorrent-ingress
+  name: qbittorrent-ingress
   annotations:
     kubernetes.io/ingress.class: traefik
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   tls:
-    - secretName: rutorrent-tls
+    - secretName: qbittorrent-tls
       hosts:
         - qbit.picturo.us
   rules:
@@ -18,6 +18,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: rutorrent
+                name: qbittorrent
                 port:
                   number: 8080

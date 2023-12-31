@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: rutorrent-config
+  name: qbittorrent-config
 spec:
   storageClassName: ""
   capacity:
@@ -10,7 +10,7 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   local:
-    path: /mnt/rutorrent
+    path: /mnt/qbittorrent
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -23,7 +23,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: rutorrent-data
+  name: qbittorrent-data
 spec:
   storageClassName: ""
   capacity:

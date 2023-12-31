@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: rutorrent
+  name: qbittorrent
   # annotations:
   #   argocd.argoproj.io/sync-wave: "-1"
   finalizers:
@@ -12,7 +12,7 @@ spec:
     server: "{{ .Values.spec.destination.server }}"
   project: default
   source:
-    path: apps/rutorrent
+    path: apps/qbittorrent
     repoURL: "{{ .Values.repo.url }}"
     targetRevision: "{{ .Values.repo.revision }}"
     helm:

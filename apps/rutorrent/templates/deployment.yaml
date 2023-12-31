@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rutorrent
+  labels:
+    app: rutorrent
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: rutorrent
+  template:
+    metadata:
+      labels:
+        app: rutorrent
+    spec:
+      containers:
+        - env:
+          - name: TZ
+            value: Asia/Bangkok
+          - name: PUID
+            value: 99
+          - name: PGID
+            value: 100
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          name: rutorrent
+          resources: {}
+          volumeMounts:
+            - mountPath: /config
+              name: rutorrent-config
+            - mountPath: /downloads
+              name: rutorrent-data
+      volumes:
+        - name: rutorrent-config
+          persistentVolumeClaim:
+            claimName: rutorrent-config
+        - name: rutorrent-data
+          persistentVolumeClaim:
+            claimName: rutorrent-data
+      restartPolicy: Always

@@ -1,0 +1,4 @@
+image:
+  repository: crazymax/rtorrent-rutorrent
+  tag: 4.2.9-0.9.8_2-0.13.8_2
+  pullPolicy: IfNotPresent

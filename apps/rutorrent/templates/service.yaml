@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rutorrent
+spec:
+  selector:
+    app: rutorrent
+  ports:
+    - port: 8080
+      targetPort: 8080
+      name: http
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rutorrent-nodeport
+spec:
+  selector:
+    app: rutorrent
+  ports:
+    - port: 6881
+      targetPort: 6881
+      nodePort: 31881
+      name: rt-dht
+      protocol: UDP
+    - port: 8000
+      targetPort: 8000
+      nodePort: 30800
+      name: xmlrpc
+      protocol: TCP
+    - port: 9000
+      targetPort: 9000
+      nodePort: 30900
+      name: webdav
+      protocol: TCP
+    - port: 50000
+      targetPort: 50000
+      nodePort: 31500
+      name: webdav
+      protocol: TCP
+  type: NodePort

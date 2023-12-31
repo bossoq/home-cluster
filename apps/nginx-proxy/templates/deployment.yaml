@@ -18,16 +18,16 @@ spec:
       labels:
         app: nginx-proxy
     spec:
-      volumes:
-        - name: nginx-config
-          persistentVolumeClaim:
-            claimName: nginx-config
       containers:
         - image: nginx:alpine
           imagePullPolicy: IfNotPresent
-          name: nginx-proxy
+          name: nginx-alpine
           resources: {}
           volumeMounts:
             - mountPath: /etc/nginx/conf.d/
               name: nginx-config
+      volumes:
+        - name: nginx-config
+          persistentVolumeClaim:
+            claimName: nginx-config
       restartPolicy: Always

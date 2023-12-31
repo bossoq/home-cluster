@@ -9,9 +9,9 @@ spec:
   tls:
     - secretName: point-miner-tls
       hosts:
-        - pointminer-test.picturo.us
+        - pointminer.picturo.us
   rules:
-    - host: pointminer-test.picturo.us
+    - host: pointminer.picturo.us
       http:
         paths:
           - path: /

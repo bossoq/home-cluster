@@ -24,7 +24,7 @@ spec:
           - name: TZ
             value: Asia/Bangkok
           - name: PUID
-            value: "99"
+            value: "65534"
           - name: PGID
             value: "100"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cloudflared-cert
+  namespace: infra
+type: Opaque
+data:
+  cert.pem: "{{ .Values.secrets.CLOUDFLARED_CERT | b64enc }}"

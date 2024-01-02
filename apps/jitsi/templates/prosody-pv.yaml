@@ -9,16 +9,10 @@ spec:
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
-  local:
-    path: /mnt/jitsi/prosody/config
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-        - matchExpressions:
-            - key: kubernetes.io/hostname
-              operator: In
-              values:
-                - dockerhost
+  nfs:
+    path: /rpool/home-cluster/jitsi/prosody/config
+    server: 10.0.1.99
+    readOnly: false
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -31,13 +25,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
-  local:
-    path: /mnt/jitsi/prosody/prosody-plugins-custom
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-        - matchExpressions:
-            - key: kubernetes.io/hostname
-              operator: In
-              values:
-                - dockerhost
+  nfs:
+    path: /rpool/home-cluster/jitsi/prosody/prosody-plugins-custom
+    server: 10.0.1.99
+    readOnly: false

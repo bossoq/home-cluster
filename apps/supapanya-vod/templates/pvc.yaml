@@ -24,4 +24,4 @@ spec:
   volumeMode: Filesystem
   resources:
     requests:
-      storage: 2Ti
+      storage: 4Ti

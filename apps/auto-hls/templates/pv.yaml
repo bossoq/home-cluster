@@ -10,8 +10,8 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    path: /mnt/disks/CacheDrive/recordings
-    server: 10.0.1.201
+    path: /data-pool/JibriRecordings
+    server: 10.0.1.99
     readOnly: false
 ---
 apiVersion: v1
@@ -21,11 +21,11 @@ metadata:
 spec:
   storageClassName: ""
   capacity:
-    storage: 1Ti
+    storage: 4Ti
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    path: /mnt/disks/SlowPhatty/VOD
-    server: 10.0.1.201
+    path: /data-pool/VOD
+    server: 10.0.1.99
     readOnly: false

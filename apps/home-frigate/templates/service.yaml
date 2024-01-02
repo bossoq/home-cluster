@@ -21,8 +21,8 @@ spec:
   selector:
     app: home-frigate
   ports:
-    - port: 8554
-      targetPort: 8554
+    - port: 31201
+      targetPort: 31201
       nodePort: 31201
       name: rtsp
       protocol: TCP
@@ -31,14 +31,14 @@ spec:
       nodePort: 31202
       name: rtmp
       protocol: TCP
-    - port: 8555
-      targetPort: 8555
+    - port: 31203
+      targetPort: 31203
       nodePort: 31203
       name: go2rtc-tcp
       protocol: TCP
-    - port: 8555
-      targetPort: 8555
-      nodePort: 31204
+    - port: 31203
+      targetPort: 31203
+      nodePort: 31203
       name: go2rtc-udp
       protocol: UDP
   type: NodePort

@@ -20,8 +20,8 @@ spec:
   selector:
     app: supapanya-frigate
   ports:
-    - port: 8554
-      targetPort: 8554
+    - port: 31211
+      targetPort: 31211
       nodePort: 31211
       name: rtsp
       protocol: TCP
@@ -30,14 +30,14 @@ spec:
       nodePort: 31212
       name: rtmp
       protocol: TCP
-    - port: 8555
-      targetPort: 8555
+    - port: 31213
+      targetPort: 31213
       nodePort: 31213
       name: go2rtc-tcp
       protocol: TCP
-    - port: 8555
-      targetPort: 8555
-      nodePort: 31214
+    - port: 31213
+      targetPort: 31213
+      nodePort: 31213
       name: go2rtc-udp
       protocol: UDP
   type: NodePort

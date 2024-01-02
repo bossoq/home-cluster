@@ -28,6 +28,8 @@ spec:
               secretKeyRef:
                 key: frigate-rtsp-password
                 name: home-frigate-secret
+          securityContext:
+            privileged: true
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           name: frigate

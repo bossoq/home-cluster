@@ -10,21 +10,34 @@ spec:
       targetPort: 5000
       name: http-web
       protocol: TCP
-    - port: 1935
-      targetPort: 1935
-      name: rtmp
-      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: supapanya-frigate-nodeport
+spec:
+  selector:
+    app: supapanya-frigate
+  ports:
     - port: 8554
       targetPort: 8554
-      nodePort: 31202
+      nodePort: 31211
       name: rtsp
+      protocol: TCP
+    - port: 1935
+      targetPort: 1935
+      nodePort: 31212
+      name: rtmp
       protocol: TCP
     - port: 8555
       targetPort: 8555
+      nodePort: 31213
       name: go2rtc-tcp
       protocol: TCP
     - port: 8555
       targetPort: 8555
+      nodePort: 31214
       name: go2rtc-udp
       protocol: UDP
-  type: ClusterIP
+  type: NodePort

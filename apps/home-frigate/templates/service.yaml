@@ -10,21 +10,35 @@ spec:
       targetPort: 5000
       name: http-web
       protocol: TCP
-    - port: 1935
-      targetPort: 1935
-      name: rtmp
-      protocol: TCP
+  type: ClusterIP
+---
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: home-frigate-nodeport
+spec:
+  selector:
+    app: home-frigate
+  ports:
     - port: 8554
       targetPort: 8554
       nodePort: 31201
       name: rtsp
       protocol: TCP
+    - port: 1935
+      targetPort: 1935
+      nodePort: 31202
+      name: rtmp
+      protocol: TCP
     - port: 8555
       targetPort: 8555
+      nodePort: 31203
       name: go2rtc-tcp
       protocol: TCP
     - port: 8555
       targetPort: 8555
+      nodePort: 31204
       name: go2rtc-udp
       protocol: UDP
-  type: ClusterIP
+  type: NodePort

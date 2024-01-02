@@ -142,38 +142,38 @@ argo-cd:
         orphanedResources:
           warn: false
 
-    # ingress:
-    #   enabled: true
-    #   annotations: {}
-    #   labels: {}
-    #   ingressClassName: ""
-    #   hosts:
-    #     - argocd.picturo.us
-    #   paths:
-    #     - /
-    #   pathType: Prefix
-    #   # extraPaths: []
-    #   extraPaths:
-    #     - path: /*
-    #       pathType: Prefix
-    #       backend:
-    #         service:
-    #           name: ssl-redirect
-    #           port:
-    #             name: use-annotation
-    #   tls:
-    #     - secretName: argocd-server-tls
-    #       hosts:
-    #         - argocd.picturo.us
-    #   https: false
+    ingress:
+      enabled: true
+      annotations: {}
+      labels: {}
+      ingressClassName: ""
+      hosts:
+        - argocd.picturo.us
+      paths:
+        - /
+      pathType: Prefix
+      # extraPaths: []
+      extraPaths:
+        - path: /*
+          pathType: Prefix
+          backend:
+            service:
+              name: ssl-redirect
+              port:
+                name: use-annotation
+      tls:
+        - secretName: argocd-server-tls
+          hosts:
+            - argocd.picturo.us
+      https: false
 
-    # certificate:
-    #   enabled: true
-    #   secretName: argocd-server-tls
-    #   domain: argocd.picturo.us
-    #   issuer:
-    #     kind: ClusterIssuer
-    #     name: letsencrypt-prod
+    certificate:
+      enabled: true
+      secretName: argocd-server-tls
+      domain: argocd.picturo.us
+      issuer:
+        kind: ClusterIssuer
+        name: letsencrypt-prod
 
   repoServer:
     volumes:

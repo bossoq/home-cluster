@@ -16,6 +16,7 @@ spec:
       protocol: TCP
     - port: 8554
       targetPort: 8554
+      nodePort: 31202
       name: rtsp
       protocol: TCP
     - port: 8555

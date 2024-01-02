@@ -28,7 +28,7 @@ spec:
       containers:
         - env:
           - name: PUID
-            value: "99"
+            value: "65534"
           - name: PGID
             value: "100"
           - name: TZ

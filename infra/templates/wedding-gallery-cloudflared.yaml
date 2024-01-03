@@ -108,7 +108,7 @@ data:
     ingress:
       # The first rule proxies traffic to the nginx sample Service defined in app.yaml
       - hostname: wedding-gallery.picturo.us
-        service: http://wedding-gallery.argocd.svc.cluster.local:1080
+        service: http://wedding-gallery-backend.argocd.svc.cluster.local:1080
 
       # This rule sends traffic to the built-in hello-world HTTP server. This can help debug connectivity
       # issues. If hello.example.com resolves and tunnel.example.com does not, then the problem is

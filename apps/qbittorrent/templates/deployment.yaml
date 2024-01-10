@@ -27,6 +27,8 @@ spec:
             value: "65534"
           - name: PGID
             value: "100"
+          - name: PEERPORT
+            value: "31500"
           - name: USER
             value: "admin"
           - name: PASS

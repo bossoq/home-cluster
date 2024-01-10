@@ -27,6 +27,13 @@ spec:
             value: "65534"
           - name: PGID
             value: "100"
+          - name: USER
+            value: "admin"
+          - name: PASS
+            valueFrom:
+              secretKeyRef:
+                name: qbittorrent-secret
+                key: qbittorrent-password
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           name: qbittorrent
@@ -36,6 +43,8 @@ spec:
               name: qbittorrent-config
             - mountPath: /downloads
               name: qbittorrent-data
+            - mountPath: /watch
+              name: qbittorrent-watch
       volumes:
         - name: qbittorrent-config
           persistentVolumeClaim:
@@ -43,4 +52,7 @@ spec:
         - name: qbittorrent-data
           persistentVolumeClaim:
             claimName: qbittorrent-data
+        - name: qbittorrent-watch
+          persistentVolumeClaim:
+            claimName: qbittorrent-watch
       restartPolicy: Always

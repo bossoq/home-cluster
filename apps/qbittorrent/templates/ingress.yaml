@@ -20,4 +20,4 @@ spec:
               service:
                 name: qbittorrent
                 port:
-                  number: 8080
+                  number: 9091

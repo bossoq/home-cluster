@@ -25,3 +25,17 @@ spec:
   resources:
     requests:
       storage: 4Ti
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: qbittorrent-watch
+spec:
+  storageClassName: ""
+  volumeName: qbittorrent-watch
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 1Gi

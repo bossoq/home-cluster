@@ -18,6 +18,7 @@ spec:
       labels:
         app: jellyfin
     spec:
+      hostNetwork: true
       volumes:
         - name: jellyfin-config
           persistentVolumeClaim:
@@ -33,52 +34,52 @@ spec:
             value: "100"
           - name: TZ
             value: Asia/Bangkok
-          - name: JELLYFIN_UDP_SERVICE_HOST
-            value: "10.0.1.102"
-          - name: JELLYFIN_UDP_PORT
-            value: "udp://10.0.1.102:1900"
-          - name: JELLYFIN_UDP_PORT_1900_UDP
-            value: "udp://10.0.1.102:1900"
-          - name: JELLYFIN_UDP_PORT_7359_UDP
-            value: "udp://10.0.1.102:7359"
-          - name: JELLYFIN_UDP_SERVICE_PORT
-            value: "1900"
-          - name: JELLYFIN_UDP_SERVICE_PORT_DLNA_UDP
-            value: "1900"
-          - name: JELLYFIN_UDP_SERVICE_PORT_DISCOVERY_UDP
-            value: "7359"
-          - name: JELLYFIN_UDP_PORT_1900_UDP_PROTO
-            value: "udp"
-          - name: JELLYFIN_UDP_PORT_1900_UDP_ADDR
-            value: "10.0.1.102"
-          - name: JELLYFIN_UDP_PORT_1900_UDP_PORT
-            value: "1900"
-          - name: JELLYFIN_UDP_PORT_7359_UDP_PROTO
-            value: "udp"
-          - name: JELLYFIN_UDP_PORT_7359_UDP_ADDR
-            value: "10.0.1.102"
-          - name: JELLYFIN_UDP_PORT_7359_UDP_PORT
-            value: "7359"
+          # - name: JELLYFIN_UDP_SERVICE_HOST
+          #   value: "10.0.1.102"
+          # - name: JELLYFIN_UDP_PORT
+          #   value: "udp://10.0.1.102:1900"
+          # - name: JELLYFIN_UDP_PORT_1900_UDP
+          #   value: "udp://10.0.1.102:1900"
+          # - name: JELLYFIN_UDP_PORT_7359_UDP
+          #   value: "udp://10.0.1.102:7359"
+          # - name: JELLYFIN_UDP_SERVICE_PORT
+          #   value: "1900"
+          # - name: JELLYFIN_UDP_SERVICE_PORT_DLNA_UDP
+          #   value: "1900"
+          # - name: JELLYFIN_UDP_SERVICE_PORT_DISCOVERY_UDP
+          #   value: "7359"
+          # - name: JELLYFIN_UDP_PORT_1900_UDP_PROTO
+          #   value: "udp"
+          # - name: JELLYFIN_UDP_PORT_1900_UDP_ADDR
+          #   value: "10.0.1.102"
+          # - name: JELLYFIN_UDP_PORT_1900_UDP_PORT
+          #   value: "1900"
+          # - name: JELLYFIN_UDP_PORT_7359_UDP_PROTO
+          #   value: "udp"
+          # - name: JELLYFIN_UDP_PORT_7359_UDP_ADDR
+          #   value: "10.0.1.102"
+          # - name: JELLYFIN_UDP_PORT_7359_UDP_PORT
+          #   value: "7359"
           securityContext:
             privileged: true
           image: ghcr.io/linuxserver/jellyfin
           imagePullPolicy: IfNotPresent
           name: jellyfin
-          ports:
-            - containerPort: 8096
-              name: http-tcp
-              protocol: TCP
-            - containerPort: 8920
-              name: https-tcp
-              protocol: TCP
-            - containerPort: 1900
-              name: dlna-udp
-              protocol: UDP
-              hostPort: 1900
-            - containerPort: 7359
-              name: discovery-udp
-              protocol: UDP
-              hostPort: 7359
+          # ports:
+          #   - containerPort: 8096
+          #     name: http-tcp
+          #     protocol: TCP
+          #   - containerPort: 8920
+          #     name: https-tcp
+          #     protocol: TCP
+          #   - containerPort: 1900
+          #     name: dlna-udp
+          #     protocol: UDP
+          #     hostPort: 1900
+          #   - containerPort: 7359
+          #     name: discovery-udp
+          #     protocol: UDP
+          #     hostPort: 7359
           resources:
             requests:
               gpu.intel.com/i915: "1"

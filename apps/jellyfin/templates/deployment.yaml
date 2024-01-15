@@ -18,7 +18,6 @@ spec:
       labels:
         app: jellyfin
     spec:
-      hostNetwork: true
       volumes:
         - name: jellyfin-config
           persistentVolumeClaim:
@@ -65,21 +64,19 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           name: jellyfin
-          # ports:
-          #   - containerPort: 8096
-          #     name: http-tcp
-          #     protocol: TCP
-          #   - containerPort: 8920
-          #     name: https-tcp
-          #     protocol: TCP
-          #   - containerPort: 1900
-          #     name: dlna-udp
-          #     protocol: UDP
-          #     hostPort: 1900
-          #   - containerPort: 7359
-          #     name: discovery-udp
-          #     protocol: UDP
-          #     hostPort: 7359
+          ports:
+            - containerPort: 8096
+              name: http-tcp
+              protocol: TCP
+            - containerPort: 8920
+              name: https-tcp
+              protocol: TCP
+            - containerPort: 1900
+              name: dlna-udp
+              protocol: UDP
+            - containerPort: 7359
+              name: discovery-udp
+              protocol: UDP
           resources:
             requests:
               gpu.intel.com/i915: "1"

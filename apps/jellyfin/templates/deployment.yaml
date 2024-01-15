@@ -62,8 +62,8 @@ spec:
           #   value: "7359"
           securityContext:
             privileged: true
-          image: ghcr.io/linuxserver/jellyfin
-          imagePullPolicy: IfNotPresent
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           name: jellyfin
           # ports:
           #   - containerPort: 8096

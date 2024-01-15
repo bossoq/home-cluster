@@ -31,8 +31,8 @@ spec:
             claimName: minidlna-data
       containers:
         - env:
-          # - name: PUID
-          #   value: "65534"
+          - name: PUID
+            value: "1000"
           - name: PGID
             value: "100"
           - name: USER_MODE

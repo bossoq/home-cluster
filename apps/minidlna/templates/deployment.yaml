@@ -35,6 +35,8 @@ spec:
           #   value: "65534"
           - name: PGID
             value: "100"
+          - name: USER_MODE
+            value: "YES"
           - name: TZ
             value: Asia/Bangkok
           - name: MINIDLNA_ROOT_CONTAINER

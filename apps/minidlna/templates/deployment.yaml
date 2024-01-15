@@ -31,14 +31,14 @@ spec:
             claimName: minidlna-data
       containers:
         - env:
-          - name: PUID
-            value: "100"
+          # - name: PUID
+          #   value: "65534"
           - name: PGID
             value: "100"
           - name: TZ
             value: Asia/Bangkok
           - name: MINIDLNA_ROOT_CONTAINER
-            value: "M"
+            value: "."
           - name: MINIDLNA_DIR_A_1
             value: /media/Musics
           - name: MINIDLNA_DIR_V_1

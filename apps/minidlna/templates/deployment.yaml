@@ -32,7 +32,7 @@ spec:
       containers:
         - env:
           - name: PUID
-            value: "65534"
+            value: "100"
           - name: PGID
             value: "100"
           - name: TZ

@@ -38,6 +38,7 @@ argo-cd:
   server:
     extraArgs:
       - --insecure
+      - --log-level=debug
     config:
       kustomize.buildOptions: "--enable-alpha-plugins"
       helm.valuesFileSchemes: >-

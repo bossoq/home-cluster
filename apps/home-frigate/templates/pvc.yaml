@@ -3,7 +3,6 @@ kind: PersistentVolumeClaim
 metadata:
   name: home-frigate-config
 spec:
-  storageClassName: ""
   volumeName: home-frigate-config
   accessModes:
     - ReadWriteMany
@@ -17,7 +16,6 @@ kind: PersistentVolumeClaim
 metadata:
   name: home-frigate-data
 spec:
-  storageClassName: ""
   volumeName: home-frigate-data
   accessModes:
     - ReadWriteMany

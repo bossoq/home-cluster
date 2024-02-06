@@ -3,7 +3,6 @@ kind: PersistentVolume
 metadata:
   name: supapanya-frigate-config
 spec:
-  storageClassName: ""
   capacity:
     storage: 10Mi
   accessModes:
@@ -19,7 +18,6 @@ kind: PersistentVolume
 metadata:
   name: supapanya-frigate-data
 spec:
-  storageClassName: ""
   capacity:
     storage: 2Ti
   accessModes:

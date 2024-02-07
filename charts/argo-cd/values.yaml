@@ -28,6 +28,10 @@ argo-cd:
         type: helm
         name: jitsi
         url: https://jitsi-contrib.github.io/jitsi-helm
+      openproject-helm-repo:
+        type: helm
+        name: openproject
+        url: https://charts.openproject.org
     cm:
       helm.valuesFileSchemes: >-
         secrets+gpg-import, secrets+gpg-import-kubernetes,

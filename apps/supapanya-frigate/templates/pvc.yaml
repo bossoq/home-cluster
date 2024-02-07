@@ -3,6 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: supapanya-frigate-config
 spec:
+  storageClassName: ""
   volumeName: supapanya-frigate-config
   accessModes:
     - ReadWriteMany
@@ -16,6 +17,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: supapanya-frigate-data
 spec:
+  storageClassName: ""
   volumeName: supapanya-frigate-data
   accessModes:
     - ReadWriteMany

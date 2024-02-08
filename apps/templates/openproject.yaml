@@ -6,7 +6,7 @@ provisioner: example.com/external-nfs
 parameters:
   path: /rpool/home-cluster/openproject
   server: 10.0.1.99
-  readOnly: false
+  readOnly: "false"
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application

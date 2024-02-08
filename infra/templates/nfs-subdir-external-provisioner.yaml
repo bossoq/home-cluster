@@ -13,10 +13,13 @@ spec:
     targetRevision: "4.0.18"
     chart: nfs-subdir-external-provisioner
     helm:
-      values: |
-        nfs:
-          server: "10.0.1.99"
-          path: "/rpool/home-cluster"
+      parameters:
+        - name: nfs.server
+          value: "10.0.1.99"
+        - name: nfs.path
+          value: "/rpool/home-cluster"
+        - name: nfs.mountOptions
+          value: "nfsvers=4.1"
   project: default
   syncPolicy:
     automated:

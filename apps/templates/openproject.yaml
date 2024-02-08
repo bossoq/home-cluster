@@ -14,25 +14,25 @@ spec:
     chart: openproject
     helm:
       parameters:
-        - name: global.ingress.annotations.kubernetes.io/ingress.class
+        - name: ingress.annotations.kubernetes.io/ingress.class
           value: "traefik"
-        - name: global.ingress.annotations.cert-manager.io/cluster-issuer
+        - name: ingress.annotations.cert-manager.io/cluster-issuer
           value: "letsencrypt-prod"
-        - name: global.ingress.host
+        - name: ingress.host
           value: "openproject.picturo.us"
-        - name: global.ingress.tls.secretName
+        - name: ingress.tls.secretName
           value: "openproject-tls"
-        - name: global.ingress.tls.enabled
+        - name: ingress.tls.enabled
           value: "true"
-        - name: global.openproject.admin_user.password
+        - name: openproject.admin_user.password
           value: "kittipos.w"
-        - name: global.openproject.admin_user.password_reset
+        - name: openproject.admin_user.password_reset
           value: "true"
-        - name: global.openproject.admin_user.name
+        - name: openproject.admin_user.name
           value: "Kittipos Wajakajornrit"
-        - name: global.openproject.admin_user.mail
+        - name: openproject.admin_user.mail
           value: "kittipos.w@kasikornline.com"
-        - name: global.persistence.storageClassName
+        - name: persistence.storageClassName
           value: "nfs-client"
   project: default
   syncPolicy:

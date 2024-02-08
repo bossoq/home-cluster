@@ -14,9 +14,9 @@ spec:
     chart: openproject
     helm:
       parameters:
-        - name: ingress.annotations[kubernetes.io/ingress.class]
-          value: "traefik"
-        - name: ingress.annotations
+        - name: ingress.annotations[0]
+          value: "kubernetes.io/ingress.class: traefik"
+        - name: ingress.annotations[1]
           value: "cert-manager.io/cluster-issuer: letsencrypt-prod"
         - name: ingress.host
           value: "openproject.picturo.us"

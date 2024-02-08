@@ -15,9 +15,7 @@ spec:
     helm:
       parameters:
         - name: ingress.annotations
-          value: |-
-            kubernetes.io/ingress.class: traefik
-            cert-manager.io/cluster-issuer: letsencrypt-prod
+          value: "kubernetes.io/ingress.class=traefik, cert-manager.io/cluster-issuer=letsencrypt-prod"
         - name: ingress.host
           value: "openproject.picturo.us"
         - name: ingress.tls.secretName

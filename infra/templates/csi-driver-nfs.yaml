@@ -12,22 +12,6 @@ spec:
     repoURL: "https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts"
     targetRevision: "4.6.0"
     chart: csi-driver-nfs
-    helm:
-      parameters:
-        - name: storageClass.name
-          value: "nfs-client"
-        - name: storageClass.defaultClass
-          value: "true"
-        - name: storageClass.provisionerName
-          value: "nfs.csi.k8s.io"
-        - name: storageClass.reclaimPolicy
-          value: "Delete"
-        - name: storageClass.mountOptions
-          value: "nolock,vers=4.1"
-        - name: storageClass.server
-          value: "10.0.1.99"
-        - name: storageClass.path
-          value: "/rpool/home-cluster"
   project: default
   syncPolicy:
     automated:

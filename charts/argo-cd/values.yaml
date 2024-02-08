@@ -36,6 +36,10 @@ argo-cd:
         type: helm
         name: csi-driver-nfs
         url: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
+      nfs-subdir-external-provisioner-helm-repo:
+        type: helm
+        name: nfs-subdir-external-provisioner
+        url: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
     cm:
       helm.valuesFileSchemes: >-
         secrets+gpg-import, secrets+gpg-import-kubernetes,

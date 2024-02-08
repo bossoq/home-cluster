@@ -32,6 +32,10 @@ argo-cd:
         type: helm
         name: openproject
         url: https://charts.openproject.org
+      csi-driver-nfs-helm-repo:
+        type: helm
+        name: csi-driver-nfs
+        url: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
     cm:
       helm.valuesFileSchemes: >-
         secrets+gpg-import, secrets+gpg-import-kubernetes,

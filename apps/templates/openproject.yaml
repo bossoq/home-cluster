@@ -13,11 +13,10 @@ spec:
     targetRevision: "4.5.0"
     chart: openproject
     helm:
+      values:
+        - environments.OPENPROJECT_LOG__LEVEL=debug
+        - environments.OPENPROJECT_STORAGE_TMP__PATH=/app/tmp
       parameters:
-        - name: environments.OPENPROJECT_LOG__LEVEL
-          value: "debug"
-        - name: environments.OPENPROJECT_STORAGE_TMP__PATH
-          value: "/app/tmp"
         - name: develop
           value: "false"
         - name: ingress.annotations.kubernetes\.io/ingress\.class

@@ -13,6 +13,9 @@ spec:
     targetRevision: "4.5.0"
     chart: openproject
     helm:
+      environment:
+        - name: OPENPROJECT_LOG__LEVEL
+          value: "debug"
       parameters:
         - name: develop
           value: "false"

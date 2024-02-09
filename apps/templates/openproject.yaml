@@ -36,6 +36,10 @@ spec:
           value: "kittipos.w@kasikornline.com"
         - name: persistence.storageClassName
           value: "nfs-client"
+        - name: postgresql.auth.secretKeys.adminPasswordKey
+          value: "password"
+        - name: postgresql.auth.secretKeys.userPasswordKey
+          value: "postgres-password"
   project: default
   syncPolicy:
     automated:

@@ -19,8 +19,8 @@ spec:
         - name: nfs.path
           value: "/rpool/home-cluster"
         - name: nfs.mountOptions
-          value: |
-            nfsvers=4
+          value: |-
+            - nfsvers=4
         - name: storageClass.accessModes
           value: "ReadWriteMany"
   project: default

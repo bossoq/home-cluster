@@ -18,6 +18,10 @@ spec:
           value: "10.0.1.99"
         - name: nfs.path
           value: "/rpool/home-cluster"
+        - name: nfs.mountOptions
+          value: "nfsvers=4"
+        - name: storageClass.accessModes
+          value: "ReadWriteMany"
   project: default
   syncPolicy:
     automated:

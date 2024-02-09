@@ -14,6 +14,8 @@ spec:
     chart: openproject
     helm:
       parameters:
+        - name: develop
+          value: true
         - name: ingress.annotations.kubernetes\.io/ingress\.class
           value: "traefik"
         - name: ingress.annotations.cert-manager\.io/cluster-issuer

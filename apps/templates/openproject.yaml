@@ -10,14 +10,14 @@ spec:
   source:
     path: ""
     repoURL: "https://charts.openproject.org"
-    targetRevision: "4.5.0"
+    targetRevision: "4.3.1"
     chart: openproject
     helm:
       parameters:
         - name: environment.OPENPROJECT_LOG__LEVEL
           value: "debug"
-        - name: environment.TMPDIR
-          value: "/app/tmp"
+        # - name: environment.TMPDIR
+        #   value: "/app/tmp"
         - name: develop
           value: "false"
         - name: ingress.annotations.kubernetes\.io/ingress\.class

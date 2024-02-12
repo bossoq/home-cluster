@@ -10,7 +10,7 @@ spec:
   source:
     path: ""
     repoURL: "https://charts.openproject.org"
-    targetRevision: "4.5.0"
+    targetRevision: "4.4.0"
     chart: openproject
     helm:
       parameters:

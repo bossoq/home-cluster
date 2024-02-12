@@ -1,1 +1,48 @@
-
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: openproject
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: "{{ .Values.spec.destination.server }}"
+  source:
+    path: ""
+    repoURL: "https://charts.openproject.org"
+    targetRevision: "4.5.0"
+    chart: openproject
+    helm:
+      parameters:
+        - name: environment.OPENPROJECT_LOG__LEVEL
+          value: "debug"
+        # - name: environment.TMPDIR
+        #   value: "/app/tmp"
+        - name: develop
+          value: "false"
+        - name: ingress.annotations.kubernetes\.io/ingress\.class
+          value: "traefik"
+        - name: ingress.annotations.cert-manager\.io/cluster-issuer
+          value: "letsencrypt-prod"
+        - name: ingress.host
+          value: "openproject.picturo.us"
+        - name: ingress.tls.secretName
+          value: "openproject-tls"
+        - name: ingress.tls.enabled
+          value: "true"
+        - name: openproject.admin_user.password_reset
+          value: "true"
+        - name: openproject.admin_user.name
+          value: "Kittipos Wajakajornrit"
+        - name: openproject.admin_user.mail
+          value: "kittipos.w@kasikornline.com"
+        - name: persistence.storageClassName
+          value: "nfs-client"
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true

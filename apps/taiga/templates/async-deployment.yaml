@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: taiga-back
+  name: taiga-async
   labels:
-    app: taiga-back
+    app: taiga-async
 spec:
   replicas: 1
   strategy:
@@ -13,14 +13,16 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: taiga-back
+      app: taiga-async
   template:
     metadata:
       labels:
-        app: taiga-back
+        app: taiga-async
     spec:
       containers:
-        - env:
+        - command:
+          - /taiga-back/docker/async_entrypoint.sh
+          env:
           - name: DEFAULT_FROM_EMAIL
             value: kittipos@picturo.us
           - name: EMAIL_BACKEND
@@ -71,7 +73,7 @@ spec:
             value: https
           image: "{{ .Values.back.image.repository }}:{{ .Values.back.image.tag }}"
           imagePullPolicy: "{{ .Values.back.image.pullPolicy }}"
-          name: taiga-back
+          name: taiga-async
           resources: {}
           volumeMounts:
             - mountPath: /taiga-back/static

@@ -16,6 +16,8 @@ spec:
       parameters:
         - name: environment.OPENPROJECT_LOG__LEVEL
           value: "debug"
+        - name: environment.RACK_MULTIPART_TEMPFILE_FACTORY
+          value: "/app/tmp"
         # - name: environment.TMPDIR
         #   value: "/app/tmp"
         - name: develop

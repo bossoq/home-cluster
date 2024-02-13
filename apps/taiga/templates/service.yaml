@@ -1,0 +1,125 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: taiga-gateway
+spec:
+  selector:
+    app: taiga-gateway
+  ports:
+    - port: 9000
+      targetPort: 80
+      name: http-web
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: taiga-async
+spec:
+  selector:
+    app: taiga-async
+  ports:
+    - port: 8888
+      targetPort: 8888
+      name: http-web
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: taiga-async-rabbitmq
+spec:
+  selector:
+    app: taiga-async-rabbitmq
+  ports:
+    - port: 5672
+      targetPort: 5672
+      name: amqp
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: taiga-back
+spec:
+  selector:
+    app: taiga-back
+  ports:
+    - port: 8000
+      targetPort: 8000
+      name: http-web
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: taiga-db
+spec:
+  selector:
+    app: taiga-db
+  ports:
+    - port: 5432
+      targetPort: 5432
+      name: postgres
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: taiga-events
+spec:
+  selector:
+    app: taiga-events
+  ports:
+    - port: 8888
+      targetPort: 8888
+      name: http-web
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: taiga-events-rabbitmq
+spec:
+  selector:
+    app: taiga-events-rabbitmq
+  ports:
+    - port: 5672
+      targetPort: 5672
+      name: amqp
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: taiga-front
+spec:
+  selector:
+    app: taiga-front
+  ports:
+    - port: 80
+      targetPort: 80
+      name: http-web
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: taiga-protected
+spec:
+  selector:
+    app: taiga-protected
+  ports:
+    - port: 8003
+      targetPort: 8003
+      name: http-web
+      protocol: TCP
+  type: ClusterIP

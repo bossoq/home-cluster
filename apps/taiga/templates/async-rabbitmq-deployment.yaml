@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taiga-async-rabbitmq
+  labels:
+    app: taiga-async-rabbitmq
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: taiga-async-rabbitmq
+  template:
+    metadata:
+      labels:
+        app: taiga-async-rabbitmq
+    spec:
+      containers:
+        - env:
+          - name: RABBITMQ_DEFAULT_PASS
+            valueFrom:
+              secretKeyRef:
+                key: rabbitmq-password
+                name: taiga-secret
+          - name: RABBITMQ_DEFAULT_USER
+            value: taiga
+          - name: RABBITMQ_DEFAULT_VHOST
+            value: taiga
+          - name: RABBITMQ_ERLANG_COOKIE
+            valueFrom:
+              secretKeyRef:
+                key: rabbitmq-erlang-cookie
+                name: taiga-secret
+          image: "{{ .Values.rabbitmq.image.repository }}:{{ .Values.rabbitmq.image.tag }}"
+          imagePullPolicy: "{{ .Values.rabbitmq.image.pullPolicy }}"
+          name: taiga-async-rabbitmq
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/rabbitmq
+              name: taiga-async-rabbitmq-data
+      hostname: taiga-async-rabbitmq
+      volumes:
+        - name: taiga-async-rabbitmq-data
+          persistentVolumeClaim:
+            claimName: taiga-async-rabbitmq-data
+      restartPolicy: Always

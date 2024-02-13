@@ -1,0 +1,35 @@
+back:
+  image:
+    repository: taigaio/taiga-back
+    tag: 6.7.1
+    pullPolicy: IfNotPresent
+db:
+  image:
+    repository: postgres
+    tag: 12.3
+    pullPolicy: IfNotPresent
+events:
+  image:
+    repository: taigaio/taiga-events
+    tag: 6.7.0
+    pullPolicy: IfNotPresent
+front:
+  image:
+    repository: taigaio/taiga-front
+    tag: 6.7.1
+    pullPolicy: IfNotPresent
+gateway:
+  image:
+    repository: nginx
+    tag: 1.19-alpine
+    pullPolicy: IfNotPresent
+protected:
+  image:
+    repository: taigaio/taiga-protected
+    tag: 6.7.0
+    pullPolicy: IfNotPresent
+rabbitmq:
+  image:
+    repository: rabbitmq
+    tag: 3.8-management-alpine
+    pullPolicy: IfNotPresent

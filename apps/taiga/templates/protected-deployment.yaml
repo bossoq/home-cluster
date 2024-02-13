@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taiga-protected
+  labels:
+    app: taiga-protected
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: taiga-protected
+  template:
+    metadata:
+      labels:
+        app: taiga-protected
+    spec:
+      containers:
+        - env:
+          - name: MAX_AGE
+            value: "360"
+          - name: SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                key: taiga-secret-key
+                name: taiga-secret
+          image: "{{ .Values.protected.image.repository }}:{{ .Values.protected.image.tag }}"
+          imagePullPolicy: "{{ .Values.protected.image.pullPolicy }}"
+          name: taiga-protected
+          resources: {}
+      restartPolicy: Always

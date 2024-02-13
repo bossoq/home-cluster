@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taiga-front
+  labels:
+    app: taiga-front
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: taiga-front
+  template:
+    metadata:
+      labels:
+        app: taiga-front
+    spec:
+      containers:
+        - env:
+          - name: TAIGA_URL
+            value: https://taiga.picturo.us
+          - name: TAIGA_WEBSOCKETS_URL
+            value: wss://taiga.picturo.us
+          image: "{{ .Values.front.image.repository }}:{{ .Values.front.image.tag }}"
+          imagePullPolicy: "{{ .Values.front.image.pullPolicy }}"
+          name: taiga-front
+          resources: {}
+      restartPolicy: Always

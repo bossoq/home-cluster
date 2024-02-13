@@ -129,7 +129,7 @@ spec:
           - name: TAIGA_SITES_DOMAIN
             value: taiga.picturo.us
           - name: TAIGA_SITES_SCHEME
-            value: http
+            value: https
           image: "{{ .Values.back.image.repository }}:{{ .Values.back.image.tag }}"
           imagePullPolicy: "{{ .Values.back.image.pullPolicy }}"
           name: taiga-back

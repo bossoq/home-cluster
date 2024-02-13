@@ -19,6 +19,67 @@ spec:
       labels:
         app: taiga-back
     spec:
+      initContainers:
+        - command:
+          - /taiga-back/docker/async_entrypoint.sh
+          env:
+          - name: DEFAULT_FROM_EMAIL
+            value: kittipos@picturo.us
+          - name: EMAIL_BACKEND
+            value: django.core.mail.backends.smtp.EmailBackend
+          - name: EMAIL_HOST
+            value: smtp.gmail.com
+          - name: EMAIL_HOST_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: email-host-password
+                name: taiga-secret
+          - name: EMAIL_HOST_USER
+            value: kittipos@picturo.us
+          - name: EMAIL_PORT
+            value: "587"
+          - name: EMAIL_USE_SSL
+            value: "false"
+          - name: EMAIL_USE_TLS
+            value: "true"
+          - name: ENABLE_TELEMETRY
+            value: "true"
+          - name: POSTGRES_DB
+            value: taiga
+          - name: POSTGRES_HOST
+            value: taiga-db.argocd.svc.cluster.local
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: postgres-password
+                name: taiga-secret
+          - name: POSTGRES_USER
+            value: taiga
+          - name: RABBITMQ_PASS
+            valueFrom:
+              secretKeyRef:
+                key: rabbitmq-password
+                name: taiga-secret
+          - name: RABBITMQ_USER
+            value: taiga
+          - name: TAIGA_SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                key: taiga-secret-key
+                name: taiga-secret
+          - name: TAIGA_SITES_DOMAIN
+            value: taiga.picturo.us
+          - name: TAIGA_SITES_SCHEME
+            value: http
+          image: "{{ .Values.back.image.repository }}:{{ .Values.back.image.tag }}"
+          imagePullPolicy: "{{ .Values.back.image.pullPolicy }}"
+          name: taiga-async
+          resources: {}
+          volumeMounts:
+            - mountPath: /taiga-back/static
+              name: taiga-static-data
+            - mountPath: /taiga-back/media
+              name: taiga-media-data
       containers:
         - env:
           - name: DEFAULT_FROM_EMAIL

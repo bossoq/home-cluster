@@ -27,6 +27,10 @@ spec:
           volumeMounts:
             - mountPath: /etc/nginx/conf.d
               name: taiga-gateway-config
+            - mountPath: /taiga/static
+              name: taiga-static-data
+            - mountPath: /taiga/media
+              name: taiga-media-data
       volumes:
         - name: taiga-gateway-config
           configMap:
@@ -34,6 +38,12 @@ spec:
             items:
               - key: default.conf
                 path: default.conf
+        - name: taiga-static-data
+          persistentVolumeClaim:
+            claimName: taiga-static-data
+        - name: taiga-media-data
+          persistentVolumeClaim:
+            claimName: taiga-media-data
       restartPolicy: Always
 ---
 apiVersion: v1

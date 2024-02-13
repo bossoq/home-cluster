@@ -22,9 +22,9 @@ spec:
       containers:
         - env:
           - name: TAIGA_URL
-            value: https://taiga.picturo.us
+            value: http://taiga.picturo.us
           - name: TAIGA_WEBSOCKETS_URL
-            value: wss://taiga.picturo.us
+            value: ws://taiga.picturo.us
           image: "{{ .Values.front.image.repository }}:{{ .Values.front.image.tag }}"
           imagePullPolicy: "{{ .Values.front.image.pullPolicy }}"
           name: taiga-front

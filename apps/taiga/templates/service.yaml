@@ -20,8 +20,8 @@ spec:
   selector:
     app: taiga-async
   ports:
-    - port: 8888
-      targetPort: 8888
+    - port: 8000
+      targetPort: 8000
       name: http-web
       protocol: TCP
   type: ClusterIP

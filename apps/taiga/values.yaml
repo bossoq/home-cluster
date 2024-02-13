@@ -1,7 +1,7 @@
 back:
   image:
     repository: taigaio/taiga-back
-    tag: 6.7.1
+    tag: 6.7.0
     pullPolicy: IfNotPresent
 db:
   image:
@@ -16,7 +16,7 @@ events:
 front:
   image:
     repository: taigaio/taiga-front
-    tag: 6.7.1
+    tag: 6.7.0
     pullPolicy: IfNotPresent
 gateway:
   image:

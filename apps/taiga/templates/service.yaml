@@ -15,20 +15,6 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: taiga-async
-spec:
-  selector:
-    app: taiga-async
-  ports:
-    - port: 8000
-      targetPort: 8000
-      name: http-web
-      protocol: TCP
-  type: ClusterIP
----
-apiVersion: v1
-kind: Service
-metadata:
   name: taiga-async-rabbitmq
 spec:
   selector:

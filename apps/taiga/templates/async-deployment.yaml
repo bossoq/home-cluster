@@ -39,11 +39,11 @@ spec:
           - name: EMAIL_PORT
             value: "587"
           - name: EMAIL_USE_SSL
-            value: "false"
+            value: "False"
           - name: EMAIL_USE_TLS
-            value: "true"
+            value: "True"
           - name: ENABLE_TELEMETRY
-            value: "true"
+            value: "True"
           - name: POSTGRES_DB
             value: taiga
           - name: POSTGRES_HOST

@@ -30,10 +30,6 @@ spec:
                 name: taiga-secret
           - name: POSTGRES_USER
             value: taiga
-          livenessProbe:
-            exec:
-              command:
-                - pg_isready -U taiga
           image: "{{ .Values.db.image.repository }}:{{ .Values.db.image.tag }}"
           imagePullPolicy: "{{ .Values.db.image.pullPolicy }}"
           name: taiga-db

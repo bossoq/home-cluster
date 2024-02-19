@@ -21,6 +21,32 @@ spec:
     spec:
       imagePullSecrets:
         - name: dockerconfigjson-ghcr
+      initContainers:
+        - command:
+          - init_start.sh
+          env:
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                key: database-url
+                name: wedding-gallery-secret
+          - name: DIRECTORY
+            value: ./files
+          - name: HOST
+            value: "0.0.0.0"
+          - name: PORT
+            value: "1080"
+          image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
+          imagePullPolicy: "{{ .Values.backend.image.pullPolicy }}"
+          name: wedding-gallery-init
+          resources: {}
+          stdin: true
+          tty: true
+          volumeMounts:
+            - mountPath: /app/files
+              name: wedding-gallery-store
+            - mountPath: /app/caches
+              name: wedding-gallery-caches
       containers:
         - env:
           - name: DATABASE_URL

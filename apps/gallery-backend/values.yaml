@@ -1,7 +1,7 @@
 backend:
   image:
     repository: ghcr.io/bossoq/gallery-backend
-    tag: 1.1.1
+    tag: 1.2.0
     pullPolicy: IfNotPresent
 db:
   image:

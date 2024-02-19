@@ -23,7 +23,7 @@ spec:
         - name: dockerconfigjson-ghcr
       initContainers:
         - command:
-          - init_start.sh
+          - /app/init_start.sh
           env:
           - name: DATABASE_URL
             valueFrom:

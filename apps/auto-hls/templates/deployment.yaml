@@ -36,7 +36,6 @@ spec:
           securityContext:
             runAsUser: 65534
             runAsGroup: 100
-            fsGroup: 100
             allowPrivilegeEscalation: true
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"

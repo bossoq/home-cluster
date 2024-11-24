@@ -33,6 +33,46 @@ spec:
             value: "https://vodstatus.picturo.us"
           - name: PUBLIC_SOCKET_URL
             value: "https://vodstatus.picturo.us/socket"
+          - name: PROJECT_ID
+            valueFrom:
+              secretKeyRef:
+                key: PROJECT_ID
+                name: autohls-secret
+          - name: TOPIC_NAME
+            valueFrom:
+              secretKeyRef:
+                key: TOPIC_NAME
+                name: autohls-secret
+          - name: SUBSCRIPTION_NAME
+            valueFrom:
+              secretKeyRef:
+                key: SUBSCRIPTION_NAME
+                name: autohls-secret
+          - name: CLIENT_EMAIL
+            valueFrom:
+              secretKeyRef:
+                key: CLIENT_EMAIL
+                name: autohls-secret
+          - name: PRIVATE_KEY
+            valueFrom:
+              secretKeyRef:
+                key: PRIVATE_KEY
+                name: autohls-secret
+          - name: SUBJECT
+            valueFrom:
+              secretKeyRef:
+                key: SUBJECT
+                name: autohls-secret
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                key: DATABASE_URL
+                name: autohls-secret
+          - name: DIRECT_URL
+            valueFrom:
+              secretKeyRef:
+                key: DIRECT_URL
+                name: autohls-secret
           # securityContext:
           #   runAsUser: 65534
           #   runAsGroup: 100
